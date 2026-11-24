@@ -22,7 +22,6 @@ const CUP_ROWS = [
 ];
 const CUP = `<svg class="cup" viewBox="0 0 10 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="${
   CUP_ROWS.flatMap((row, y) => [...row].map((c, x) => (c === '#' ? `M${x} ${y}h1v1h-1z` : ''))).join('')}"/></svg>`;
-const withCups = (html) => html.replace(/☕/g, CUP); // for strings that carry the ☕ placeholder
 const BUY_MS = 800; // the "item obtained" box, then the link (within the browser's user-activation window)
 
 export function createShop(root, { t, ask }) {
@@ -80,7 +79,6 @@ export function createShop(root, { t, ask }) {
               <h2 class="shop__aisle-h" id="shop-aisle-${g.aisle}-h">${esc(t('shop.aisle.' + g.aisle))}</h2>
               <ul class="shop__grid" role="list">${g.projects.map((p) => card(p, lang)).join('')}</ul>
             </section>`).join('')}
-          <footer class="shop__foot">${withCups(esc(t('shop.foot')))}</footer>
         </div>
         <div class="shop-fiche" hidden>
           <div class="shop-fiche__box" role="dialog" aria-modal="true" aria-labelledby="shop-fiche-title"></div>

@@ -376,7 +376,7 @@ L'écran est découpé dans ces deux couches pour que ses couleurs restent brute
 
 *Spec : `.scratch/profil/spec.md`. Référence : *black hole.mp4*, de buildwithsid (Inspora).*
 
-- **Ouverture** : depuis l'avatar de la barre du haut, depuis « Malo Evain » dans bienvenue.txt, ou depuis « Sur demande » dans la Boutique. Le Profil s'ouvre en plein écran par un fondu de 0,3 s, sans plongée de caméra.
+- **Ouverture** : depuis l'avatar de la barre du haut, depuis l'icône **Profil** du Bureau (un badge cerclé de rouge, en tête de la colonne de droite), depuis « Malo Evain » dans bienvenue.txt, ou depuis « Sur demande » dans la Boutique. Le Profil s'ouvre en plein écran par un fondu de 0,3 s, sans plongée de caméra.
 - **Page** : papier `#f3efe6`, encre `#15131a`, IBM Plex Mono 11 px (12 px sur mobile, donc moins de caractères). Le texte est « Le Bateau ivre » (1871, domaine public), en flux continu (` / ` entre les vers, ` · ` entre les strophes), à 50 % d'opacité.
 - **Silhouette** : vue de profil, elle marche vers la droite et traverse la page en 18 s. Elle est dessinée par la densité des caractères (` .:-=+*#%@`) : cheveux, monture des lunettes et chaussures en `@`, peau claire, verre des lunettes presque vide. Les lettres s'écartent autour d'elle et forment un anneau plus sombre, et le curseur les pousse aussi. Sur mobile, elle marche au-dessus de la carte.
 - **Coordonnées** : un bloc HTML fixe en bas à gauche, sur fond papier. Nom en Instrument Sans 700, liens en **rouge vif `#e5372c`**, soulignés au survol. Le texte laisse une marge vide autour du bloc, de la croix de fermeture, de la mention et de la barre du haut.

@@ -13,9 +13,10 @@ export const ICON_RECT = {
   edu: { x: 520, y: 100, w: 124, h: 104 },
   exp: { x: 660, y: 100, w: 124, h: 104 },
   shop: { x: 800, y: 100, w: 124, h: 104 },
-  lofi: { x: 934, y: 58, w: 64, h: 56 },
-  notes: { x: 934, y: 160, w: 64, h: 56 },
-  github: { x: 934, y: 262, w: 64, h: 56 },
+  profile: { x: 934, y: 58, w: 64, h: 56 },
+  lofi: { x: 934, y: 160, w: 64, h: 56 },
+  notes: { x: 934, y: 262, w: 64, h: 56 },
+  github: { x: 934, y: 364, w: 64, h: 56 },
 };
 export const ICONS = Object.keys(ICON_RECT);
 export const BIG_ICONS = ['edu', 'exp', 'shop'];
@@ -105,6 +106,20 @@ export const ICON_SVG = {
     <path d="M36 75l-4 9h68" stroke="#2e2a3a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="42" cy="91" r="6" fill="#2e2a3a"/><circle cx="42" cy="91" r="2.2" fill="#fffaf1"/>
     <circle cx="90" cy="91" r="6" fill="#2e2a3a"/><circle cx="90" cy="91" r="2.2" fill="#fffaf1"/>
+  </g>
+</svg>`,
+  // the Profile: Malo's ID badge (his side profile with glasses), ringed in the Profile's red
+  profile: `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56">
+  <circle cx="32" cy="28" r="25" fill="#e5372c"/>
+  <circle cx="32" cy="28" r="21.5" fill="#f3efe6"/>
+  <clipPath id="pf-c"><circle cx="32" cy="28" r="21.5"/></clipPath>
+  <g clip-path="url(#pf-c)">
+    <path d="M14 56c2-11 8-16 18-16s16 5 17 16z" fill="#15131a"/>
+    <ellipse cx="33" cy="24" rx="8.6" ry="10" fill="#d9cdb8"/>
+    <path d="M24.2 24.6c-1-8 2.8-12.6 9.4-12.6 4.6 0 8 2 9 5.8-3.8-.7-7.6 0-10.4 1-1.6.6-2.8 2.2-3.3 4.2z" fill="#15131a"/>
+    <rect x="36.4" y="21" width="7.6" height="5.6" rx="1.6" fill="#f3efe6" stroke="#15131a" stroke-width="1.8"/>
+    <path d="M36.4 22.8l-6.6 1" stroke="#15131a" stroke-width="1.6"/>
   </g>
 </svg>`,
   lofi: `

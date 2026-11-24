@@ -1723,7 +1723,6 @@ body.mode-desk .grain { display: none; }
 .shop-card__title { display: block; margin: 6px 12px 8px; font-size: 22px; font-weight: 700; line-height: 1.08; letter-spacing: -0.02em; }
 .shop-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin: auto 12px 14px; }
 .shop-card__tags i, .shop-fiche__tags li { font-style: normal; padding: 2px 6px; font-family: var(--f-pixel); font-size: 10.5px; text-transform: uppercase; border: 2px solid var(--sh-ink); }
-.shop__foot { font-family: var(--f-pixel); font-size: 11px; text-transform: uppercase; opacity: 0.75; }
 /* the Fiche: a retro dialog box over the grid */
 .shop-fiche { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(17, 16, 20, 0.45); }
 .shop-fiche[hidden] { display: none; }

@@ -17,6 +17,7 @@ La scène est inspirée de *black hole.mp4* (buildwithsid, sur Inspora) : une pa
 1. En tant que Visiteur, je veux voir un avatar à droite de la barre de menus, pour savoir à qui appartient cet ordinateur et où trouver ses coordonnées.
 2. En tant que Visiteur, je veux ouvrir le Profil en cliquant sur l'avatar, depuis le Bureau, le Monde des îles, un Programme ou la Boutique.
 3. En tant que Visiteur, je veux ouvrir le Profil en cliquant sur « Malo Evain » dans bienvenue.txt, pour en savoir plus juste après la présentation.
+3b. En tant que Visiteur sur le Bureau, je veux une icône Profil bien visible (en tête de la colonne des Utilitaires), pour trouver le Profil sans chercher l'avatar en haut à droite.
 4. En tant que Visiteur dans la Boutique, je veux qu'un clic sur « Sur demande » ouvre le Profil, pour demander l'accès à un Projet privé.
 5. En tant que Visiteur, je veux que le Profil s'ouvre en grand presque instantanément, pour ne pas attendre une transition.
 6. En tant que Visiteur, je veux voir une page de texte dense en petits caractères, sur fond papier clair, pour être surpris par une ambiance très différente du reste du site.
