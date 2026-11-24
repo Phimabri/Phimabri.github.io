@@ -45,14 +45,15 @@ La scène est inspirée de *black hole.mp4* (buildwithsid, sur Inspora) : une pa
 
 - Le Profil n'est pas un Chapitre : il n'a ni Dossier ni onglet de Chapitre dans le menu.
 - Un composant Profil unique expose « ouvrir » et « fermer », appelés par l'avatar, par le nom dans bienvenue.txt et par la Boutique. Il suit le contrat start/stop/refresh : l'animation ne tourne qu'entre l'ouverture et la fermeture.
-- **Ouverture** : une couche plein écran par-dessus le site, en moins de 0,5 s (fondu), sans plongée de caméra. Elle est accessible dans tous les modes. La barre de menus et l'avatar restent visibles partout.
+- **Ouverture** : une couche plein écran par-dessus le site, en moins de 0,5 s (fondu), sans plongée de caméra. Elle est accessible dans tous les modes. La barre du haut et l'avatar restent visibles et utilisables : un lien du menu ferme d'abord le Profil, puis fait son action. Le monde 3D est en pause tant que le Profil est ouvert.
 - **Scène ASCII** (décor, ignoré par les technologies d'assistance), dessinée sur un canvas :
   - fond papier clair, caractères sombres monospace fins, monochrome très contrasté ;
   - le texte de fond est « Le Bateau ivre » d'Arthur Rimbaud (1871, domaine public), répété autant que nécessaire pour remplir la page. Il reste en français dans les deux langues. Une mention (« Arthur Rimbaud, *Le Bateau ivre*, 1871 ») passe par le système FR/EN ;
   - la **Silhouette** : un jeune adulte de corpulence moyenne (environ 1,75 m), avec des lunettes et des cheveux courts juste au-dessus des oreilles, vu de profil, dessiné par la densité des caractères. Elle est générée par le code (pas de photo ni de vidéo), avec un cycle de marche ;
   - elle traverse la page de gauche à droite en 15 à 20 s, sort par un bord et revient par l'autre ;
-  - les lettres s'écartent et se courbent autour de la Silhouette et s'assombrissent à l'intérieur ; le curseur produit une petite déformation du même type ;
-  - le texte garde une marge vide autour du bloc des coordonnées.
+  - à l'intérieur de la Silhouette, les lettres sont remplacées par des caractères de densité (` .:-=+*#%@`) ; autour, elles s'écartent et forment un anneau plus sombre ; le curseur produit une petite déformation du même type ;
+  - le texte garde une marge vide autour du bloc des coordonnées, de la croix, de la mention et de la barre du haut ;
+  - sur mobile, la Silhouette marche au-dessus du bloc des coordonnées, qui occupe le bas de l'écran.
 - **Bloc des coordonnées** (HTML, fixe, toujours au premier plan, en bas à gauche) : nom, une phrase, e-mail (copier et mailto), LinkedIn, GitHub, CV. Tous les éléments cliquables sont en rouge vif (vermillon), soulignés au survol, avec un contraste suffisant sur le papier.
 - **Données** : le CV est le PDF anglais fourni par Malo, servi comme fichier statique et ouvert dans un nouvel onglet quelle que soit la langue. LinkedIn : https://www.linkedin.com/in/malo-evain-b1310420a/. E-mail affiché : malo.evain.eu@gmail.com.
 - L'Utilitaire GitHub du Bureau est conservé. Le doublon est voulu.

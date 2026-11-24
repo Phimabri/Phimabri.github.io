@@ -60,7 +60,7 @@ Un troisième Chapitre, **Projets**, présenté comme une **Boutique** : la bout
   | Projet | Rayon | Objet | Lien | Durée | Année | Prix (coef. 1) | Rareté |
   |---|---|---|---|---|---|---|---|
   | courtier-mcp | Web & agents | éclair dans une prise | « Sur demande », qui ouvre le Profil | 2,5 semaines | 2026 | 30 ☕ | rare |
-  | Étude de market making sur Polymarket | Marchés | carnet d'ordres (offres vertes et rouges, et l'écart) | rapport PDF servi par le site (dossier public des Projets) | 2,5 semaines | 2026 | 30 ☕ | rare |
+  | Étude de market making sur Polymarket | Marchés | carnet d'ordres (offres vertes et rouges, et l'écart) | rapport PDF servi par le site (`projects/rapport_latence_polymarket.pdf` dans le dossier public) | 2,5 semaines | 2026 | 30 ☕ | rare |
   | Site PureOptics | Web & agents | globe façon World Wide Web | maquettes sur GitHub Pages (phimabri.github.io/pureoptics-maquettes), avec Aperçu | 1 semaine | 2026 | 12 ☕ | commun |
   | time-series-analysis | Machine learning | graphique | dépôt GitHub public | 1 semaine | 2024 | 12 ☕ | commun |
   | introduction_to_GAN | Machine learning | réseau de neurones | dépôt GitHub public | 1 semaine | 2023 | 12 ☕ | commun |
