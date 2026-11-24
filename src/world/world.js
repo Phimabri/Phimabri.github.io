@@ -269,10 +269,6 @@ export async function createWorld(canvas, { roomEl, onProgress = () => {}, reduc
   const wallpaper = paintWallpaper();
   screenU.uDesk.value = createDeskTexture(wallpaper);
   const EDU_UV = eduIconUV();
-  room.setNotes(...noteText());
-  function noteText() {
-    return (document.documentElement.lang || 'en').startsWith('fr') ? ['Projets', 'bientôt ✿'] : ['Projects', 'coming ✿'];
-  }
 
   let pixelMode = false;
   let baseFov = 28;
@@ -612,7 +608,6 @@ export async function createWorld(canvas, { roomEl, onProgress = () => {}, reduc
     eggs,
     room,
     desk,
-    refreshNotes() { room.setNotes(...noteText()); },
     wallpaper,
     get mode() { return mode; },
     onMode(f) { onMode.add(f); },

@@ -161,7 +161,6 @@ $('#langBtn').addEventListener('click', () => {
     if (card) $$('[data-type]', card).forEach(typeIn);
   });
   updateTimeUI(true);
-  world?.refreshNotes();
   Object.values(APPS).forEach((a) => a.refresh());
   profile.refresh();
 });
@@ -563,6 +562,7 @@ $$('[data-go]').forEach((el) =>
   el.addEventListener('click', (e) => {
     e.preventDefault();
     const go = el.dataset.go;
+    profile.close(); // the menu stays usable over the Profile: it closes it, then goes
     if (go === 'shop') { openShop(); return; }
     if (openApp) {
       closeApp().then(() => { if (go === 'edu') goEdu(0); else if (go === 'home') goDesk(false); });
@@ -585,7 +585,7 @@ function loop(now) {
   const p = window.__lockP ?? progressAt(scrollY()); // __lockP: debug override
   if (Math.abs(p - lastP) > 0.0005) { pointerDirty = true; lastP = p; } // camera moved under a still cursor
   updateReveals(p);
-  if (world) {
+  if (world && !profile.isOpen) { // the Profile covers the whole screen: nothing to render underneath
     world.setProgress(p);
     if (frame++ % 2 === 0) updateHover();
     world.update(dt);

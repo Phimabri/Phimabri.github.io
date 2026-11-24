@@ -83,6 +83,6 @@ export function createProfile({ t, reduced }) {
     open, close,
     get isOpen() { return isOpen; },
     // the card may change size with the language: lay the page out again
-    refresh() { if (isOpen) { scene.stop(); scene.start(); } },
+    refresh() { if (isOpen) scene.relayout(); },
   };
 }

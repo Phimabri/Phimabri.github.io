@@ -8,6 +8,7 @@ const PAPER = '#f3efe6', INK = '#15131a';
 const RAMP = ' .:-=+*#%@'; // light -> dense
 const Q = 1 / 3; // mask resolution (relative to CSS pixels)
 const WALK_S = 18; // seconds to cross the page
+const FIELD_DOWN = 5; // the field is computed this many times coarser than the masks
 
 const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 
@@ -72,6 +73,8 @@ export function createAsciiScene(canvas, { reduced = false, avoid = () => [], gr
   const ctx = canvas.getContext('2d');
   const bg = document.createElement('canvas');
   const toneC = document.createElement('canvas'), fieldC = document.createElement('canvas');
+  const smallC = document.createElement('canvas'); // the field is drawn small then scaled up: a blur every browser does
+  const smallG = smallC.getContext('2d');
   const toneG = toneC.getContext('2d', { willReadFrequently: true });
   const fieldG = fieldC.getContext('2d', { willReadFrequently: true });
   let W = 0, H = 0, dpr = 1, fs = 11, cw = 7, ch = 14, cols = 0, rows = 0, u = 600, floorY = 0, font = '';
@@ -94,6 +97,7 @@ export function createAsciiScene(canvas, { reduced = false, avoid = () => [], gr
     floorY = Math.min(H * 0.97, ground() - 6);
     u = Math.min(H * 0.8, W * 1.1, (floorY - 90) * 0.96); // the head stays below the top bar
     toneC.width = fieldC.width = Math.ceil(W * Q); toneC.height = fieldC.height = Math.ceil(H * Q);
+    smallC.width = Math.ceil(toneC.width / FIELD_DOWN); smallC.height = Math.ceil(toneC.height / FIELD_DOWN);
     // the page of text, and the cells kept empty around the contact block
     const zones = [].concat(avoid() || []);
     const m = 22;
@@ -115,15 +119,18 @@ export function createAsciiScene(canvas, { reduced = false, avoid = () => [], gr
 
   // the Silhouette at time t: tones and blurred field, both in mask space
   function paintMasks(x, y, phase) {
-    for (const [g, blur] of [[toneG, 0], [fieldG, 1]]) {
-      g.setTransform(1, 0, 0, 1, 0, 0);
-      g.filter = 'none';
-      g.fillStyle = '#000'; g.fillRect(0, 0, toneC.width, toneC.height);
-      g.setTransform(Q, 0, 0, Q, 0, 0);
-      if (blur) g.filter = `blur(${Math.max(2, 0.035 * u * Q)}px)`;
-      const tone = blur ? () => { g.fillStyle = g.strokeStyle = '#fff'; } : (v) => { const c = Math.round(v * 255); g.fillStyle = g.strokeStyle = `rgb(${c},${c},${c})`; };
-      figure(g, x, y, u, phase, tone);
-    }
+    toneG.setTransform(1, 0, 0, 1, 0, 0);
+    toneG.fillStyle = '#000'; toneG.fillRect(0, 0, toneC.width, toneC.height);
+    toneG.setTransform(Q, 0, 0, Q, 0, 0);
+    figure(toneG, x, y, u, phase, (v) => { const c = Math.round(v * 255); toneG.fillStyle = toneG.strokeStyle = `rgb(${c},${c},${c})`; });
+    // the soft field around the Silhouette: drawn at low resolution, then smoothed by the upscale
+    smallG.setTransform(1, 0, 0, 1, 0, 0);
+    smallG.fillStyle = '#000'; smallG.fillRect(0, 0, smallC.width, smallC.height);
+    smallG.setTransform(Q / FIELD_DOWN, 0, 0, Q / FIELD_DOWN, 0, 0);
+    figure(smallG, x, y, u, phase, () => { smallG.fillStyle = smallG.strokeStyle = '#fff'; });
+    fieldG.setTransform(1, 0, 0, 1, 0, 0);
+    fieldG.imageSmoothingEnabled = true; fieldG.imageSmoothingQuality = 'high';
+    fieldG.drawImage(smallC, 0, 0, fieldC.width, fieldC.height);
   }
 
   function frame(now) {
@@ -211,6 +218,8 @@ export function createAsciiScene(canvas, { reduced = false, avoid = () => [], gr
       size();
       t0 = performance.now() - WALK_S * 1000 * 0.18; // enter already a little inside the page
       draw((performance.now() - t0) / 1000);
+      // the grid is measured with the real font once it is there (not the fallback)
+      document.fonts?.load(font).then(() => { if (running) onResize(); }).catch(() => {});
       window.addEventListener('resize', onResize);
       if (!reduced) {
         window.addEventListener('pointermove', onMove, { passive: true });
@@ -218,6 +227,8 @@ export function createAsciiScene(canvas, { reduced = false, avoid = () => [], gr
         raf = requestAnimationFrame(frame);
       }
     },
+    /** lay the page out again (new size, new card), the walk carries on where it was */
+    relayout() { onResize(); },
     stop() {
       running = false;
       cancelAnimationFrame(raf);

@@ -61,17 +61,12 @@ export function createRoom2D(el) {
     LAYERS.map((L) => `${L.bmpOnly ? '' : `<div class="room__layer room__live ${L.cls}" data-k="${L.key}">${L.svg()}</div>`}<canvas class="room__layer room__bmp ${L.cls}" data-k="${L.key}"></canvas>`).join(''); // no grain over the room: the fine lines stay crisp
   const live = Object.fromEntries([...el.querySelectorAll('.room__live')].map((n) => [n.dataset.k, n]));
   const bmp = Object.fromEntries([...el.querySelectorAll('.room__bmp')].map((n) => [n.dataset.k, n]));
-  const noteA = el.querySelector('#room-note-a'), noteB = el.querySelector('#room-note-b');
   const tt = el.querySelector('.room-tt');
 
-  let fontCSS = null, ready = false, notes = null, playing = false;
+  let fontCSS = null, ready = false, playing = false;
   // what the bitmaps freeze of the animated bits (steam half visible, the arm where it is)
   const frozenCSS = () => `.room-steam path{opacity:.35}${playing ? '.room-arm{transform-box:view-box;transform-origin:330px 642px;transform:rotate(38deg)}' : ''}`;
-  const frontSource = () => {
-    let s = frontSVG();
-    if (notes) s = s.replace(/(id="room-note-a"[^>]*>)[^<]*/, `$1${notes[0]}`).replace(/(id="room-note-b"[^>]*>)[^<]*/, `$1${notes[1]}`);
-    return s;
-  };
+  const frontSource = () => frontSVG();
   async function paint(keys) {
     const css = fontCSS + frozenCSS();
     await Promise.all(LAYERS.filter((L) => keys.includes(L.key)).map((L) =>
@@ -146,7 +141,6 @@ export function createRoom2D(el) {
       if (on) { lastB = lastF = ''; stillScale = 0; }
     },
     get visible() { return visible; },
-    setNotes(a, b) { if (!noteA) return; noteA.textContent = a; noteB.textContent = b; notes = [a, b]; repaintFront(); },
     setPlaying(on) { playing = on; el.classList.toggle('is-playing', on); repaintFront(); },
     onTurntable(f) { tt.addEventListener('click', f); },
   };
