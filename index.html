@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Malo Evain · a little world</title>
+    <meta name="description" content="Malo Evain: statistics, machine learning and quantitative research. A little voxel world to explore." />
+    <meta name="theme-color" content="#f6e6cf" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath fill='%23e07a5f' d='M2 0h4v1h1v3H6v1H2V4H1V1h1z'/%3E%3Cpath fill='%23fff1dc' d='M3 0h2v5H3z'/%3E%3Cpath fill='%238a5a3b' d='M3 6h2v2H3z'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=Instrument+Sans:wght@400;500;600&family=Silkscreen&family=Caveat:wght@500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Nunito:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- loader -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <canvas class="loader__dissolve" id="dissolve"></canvas>
+      <div class="loader__inner">
+        <div class="loader__balloon" data-icon="balloon"></div>
+        <p class="pixel loader__title" data-i18n="loader.title">Building the world</p>
+        <div class="loader__bar"><span id="loaderBar"></span></div>
+        <p class="pixel loader__count"><span id="loaderCount">0</span> <span data-i18n="loader.voxels">voxels placed</span></p>
+      </div>
+    </div>
+
+    <canvas id="world" class="world" aria-hidden="true"></canvas>
+    <div class="room" id="room" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="tip pixel" id="tip" aria-hidden="true"></div>
+
+    <!-- top bar -->
+    <header class="topbar">
+      <a class="logo" href="#desktop" data-go="home">
+        <span class="logo__icon" data-icon="balloon"></span>
+        <span class="pixel">malo.evain</span>
+      </a>
+
+      <nav class="nav glass" aria-label="Sections">
+        <a href="#desktop" data-go="home" class="nav__link is-active"><span data-i18n="nav.desk">Desktop</span></a>
+        <a href="#education" data-go="edu" class="nav__link"><span data-i18n="nav.education">Education</span></a>
+        <a href="#experience" data-go="desk" class="nav__link"><span data-i18n="nav.experience">Experience</span></a>
+        <span class="nav__link is-disabled"><span data-i18n="nav.projects">Projects</span> <em class="pixel" data-i18n="nav.soon">soon</em></span>
+      </nav>
+
+      <div class="dock">
+        <div class="time" id="time">
+          <button class="time__btn glass" id="timeBtn" aria-expanded="false" aria-controls="timePop" data-i18n-aria="time.title">
+            <span class="time__icon" id="timeIcon"></span>
+            <span class="pixel time__clock" id="clock">12:00</span>
+          </button>
+          <div class="time__pop glass" id="timePop" role="dialog" data-i18n-aria="time.title">
+            <div class="time__head">
+              <span class="pixel time__phase" id="phase">Noon</span>
+              <span class="time__mode" id="timeMode" data-i18n="time.local">your local time</span>
+            </div>
+            <div class="time__track">
+              <input type="range" min="0" max="24" step="0.01" value="12" id="timeRange" data-i18n-aria="time.title" />
+              <div class="time__ticks pixel" aria-hidden="true"><span>0</span><span>6</span><span>12</span><span>18</span><span>24</span></div>
+            </div>
+            <button class="time__now pixel" id="timeNow" data-i18n="time.now">Now</button>
+          </div>
+        </div>
+        <button class="chip glass pixel" id="langBtn" aria-label="Language">
+          <span data-l="en">EN</span><i>/</i><span data-l="fr">FR</span>
+        </button>
+        <button class="chip glass pixel" id="pixelBtn" aria-pressed="false">
+          <span class="pixel-dot" aria-hidden="true"></span><span data-i18n="pixel.label">Pixel</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- journey rail: always-visible summary of the path -->
+    <nav class="rail" aria-label="Journey">
+      <p class="rail__head"><span class="pixel" data-i18n="rail.kicker">chapter 01</span><b data-i18n="rail.head">Education</b></p>
+      <ol class="rail__stops">
+        <li data-stop="0"><button data-scroll="0"><span class="rail__txt"><b data-i18n="rail.0">Home</b><small class="pixel">Clamart</small></span><i class="rail__dot"></i></button></li>
+        <li data-stop="1"><button data-scroll="1"><span class="rail__txt"><b>Paris-Saclay</b><small class="pixel">2019 → 2022</small></span><i class="rail__dot"></i></button></li>
+        <li data-stop="2"><button data-scroll="2"><span class="rail__txt"><b>ENSAE Paris</b><small class="pixel">2022 → 2026</small></span><i class="rail__dot"></i></button></li>
+        <li data-stop="3"><button data-scroll="3"><span class="rail__txt"><b>Oxford</b><small class="pixel">2025</small></span><i class="rail__dot"></i></button></li>
+        <li class="rail__go"><button data-go="desk"><span class="rail__txt"><b data-i18n="rail.4">Experience</b><small class="pixel">2024 → 2026</small></span><i class="rail__dot"></i></button></li>
+      </ol>
+      <span class="rail__line" aria-hidden="true"><span class="rail__fill" id="railFill"></span></span>
+    </nav>
+
+    <main id="top">
+      <!-- 0 · hero -->
+      <section class="sec hero" data-stop="0">
+        <div class="hero__text">
+          <p class="eyebrow pixel" data-i18n="hero.eyebrow">Hello, world. I’m</p>
+          <h2 class="hero__title" data-split>Malo Evain</h2>
+          <p class="hero__lede" data-i18n="hero.lede"></p>
+          <div class="chapter">
+            <span class="chapter__ico" data-svg="edu" aria-hidden="true"></span>
+            <span class="chapter__txt">
+              <small class="pixel" data-i18n="chapter.kicker">Chapter 01 / 02</small>
+              <b data-i18n="chapter.title">Education</b>
+              <span data-i18n="chapter.sub">My studies, one island per school.</span>
+            </span>
+          </div>
+          <a href="#education" class="btn" data-scroll="1">
+            <span data-i18n="hero.cta">Start the journey</span>
+            <span class="btn__arrow" data-icon="arrow"></span>
+          </a>
+        </div>
+        <div class="hint pixel"><span data-i18n="hero.hint">scroll</span><i></i></div>
+      </section>
+
+      <!-- 1 · Saclay -->
+      <section class="sec stop stop--left" data-stop="1" id="education">
+        <div class="sticky">
+          <article class="card reveal" style="--accent: var(--sage)">
+            <header class="card__head">
+              <span class="card__icon" data-icon="book"></span>
+              <p class="meta pixel" data-i18n="saclay.meta" data-type>01 · 2019 → 2022</p>
+            </header>
+            <h3 class="card__title" data-split>Université Paris-Saclay</h3>
+            <p class="card__degree" data-i18n="saclay.degree"></p>
+            <ul class="chips">
+              <li class="chip-s chip-s--strong">GPA 4.0 / 4.0</li>
+              <li class="chip-s" data-i18n="saclay.c2"></li>
+              <li class="chip-s" data-i18n="saclay.c3"></li>
+            </ul>
+            <p class="card__note"><span class="note-dot"></span><span data-i18n="saclay.note"></span></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 2 · ENSAE -->
+      <section class="sec stop stop--right" data-stop="2">
+        <div class="sticky">
+          <article class="card reveal" style="--accent: var(--terracotta)">
+            <header class="card__head">
+              <span class="card__icon" data-icon="ball"></span>
+              <p class="meta pixel" data-i18n="ensae.meta" data-type>02 · 2022 → 2026</p>
+            </header>
+            <h3 class="card__title" data-split>ENSAE Paris</h3>
+            <p class="card__sub" data-i18n="ensae.sub"></p>
+            <p class="card__degree" data-i18n="ensae.degree"></p>
+            <ul class="chips">
+              <li class="chip-s chip-s--strong">GPA 4.0 / 4.0</li>
+              <li class="chip-s" data-i18n="ensae.c2"></li>
+              <li class="chip-s" data-i18n="ensae.c3"></li>
+            </ul>
+            <p class="card__note"><span class="note-dot"></span><span data-i18n="ensae.note"></span></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3 · Oxford -->
+      <section class="sec stop stop--left" data-stop="3">
+        <div class="sticky">
+          <article class="card reveal" style="--accent: var(--honey-deep)">
+            <header class="card__head">
+              <span class="card__icon" data-icon="cap"></span>
+              <p class="meta pixel" data-i18n="oxford.meta" data-type>03 · 2025</p>
+            </header>
+            <h3 class="card__title" data-split>University of Oxford</h3>
+            <p class="card__degree" data-i18n="oxford.degree"></p>
+            <ul class="chips">
+              <li class="chip-s chip-s--gold"><span data-icon="star" class="chip-icon"></span><span data-i18n="oxford.badge"></span></li>
+              <li class="chip-s" data-i18n="oxford.c2"></li>
+              <li class="chip-s" data-i18n="oxford.c3"></li>
+            </ul>
+            <p class="card__note"><span class="note-dot"></span><span data-i18n="oxford.note"></span></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 4 · end of the Education folder -->
+      <section class="sec outro" data-stop="4">
+        <div class="sticky">
+          <div class="card card--center reveal">
+            <p class="meta pixel" data-i18n="end.label" data-type>End of the folder</p>
+            <h2 class="card__title" data-i18n="end.title" data-split>Now, experience</h2>
+            <p class="card__text" data-i18n="end.text"></p>
+            <div class="outro__links">
+              <button class="btn" data-go="desk"><span data-i18n="end.cta">Back to the desktop</span><span class="btn__arrow" data-icon="arrow"></span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="malos" id="malos" aria-label="malOS">
+      <div class="malos__screen" id="malosScreen">
+        <div class="os-bar">
+          <span class="os-bar__logo" aria-hidden="true"></span>
+          <b>malOS</b>
+          <span data-i18n="os.file">File</span><span data-i18n="os.edit">Edit</span><span data-i18n="os.window">Window</span>
+          <span class="os-bar__sp"></span>
+          <span class="os-bar__item" id="osNow">♪ lofi.fm</span>
+          <span class="os-bar__item" aria-hidden="true">☾</span>
+          <span class="os-bar__clock" id="osClock">23:41</span>
+        </div>
+
+        <!-- welcome: who I am + where to click -->
+        <section class="os-win os-win--welcome is-open" id="win-welcome" aria-labelledby="wel-name">
+          <header class="os-win__bar">
+            <button class="os-win__close" data-close="welcome" aria-label="Close"></button>
+            <span class="os-win__title" data-i18n="wel.file">welcome.txt</span>
+            <span class="os-win__path">~/malo</span>
+          </header>
+          <div class="os-wel">
+            <p class="os-wel__hi" data-i18n="wel.hi">Hello, I’m</p>
+            <h1 class="os-wel__name" id="wel-name">Malo Evain</h1>
+            <p class="os-wel__lede" data-i18n="wel.lede"></p>
+            <p class="os-wel__ask" data-i18n="wel.ask">Open a folder to start:</p>
+            <div class="os-wel__picks">
+              <button class="os-pick" data-open="edu"><span class="os-pick__ico" data-svg="edu"></span><span class="os-pick__txt"><b data-i18n="os.edu">Education</b><small data-i18n="wel.edu">my studies, one island per school</small></span><span class="os-pick__go" aria-hidden="true">→</span></button>
+              <button class="os-pick" data-open="exp"><span class="os-pick__ico" data-svg="exp"></span><span class="os-pick__txt"><b data-i18n="os.exp">Experience</b><small data-i18n="wel.exp">one little program per internship</small></span><span class="os-pick__go" aria-hidden="true">→</span></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- the two chapter folders, big, in the middle of the desktop -->
+        <div class="os-folders">
+          <button class="os-ico os-ico--big" data-open="edu" style="left: 558px"><span class="os-ico__halo" aria-hidden="true"></span><span class="os-ico__img" data-svg="edu"></span><em data-i18n="os.edu">Education</em><small>2019 → 2026</small></button>
+          <button class="os-ico os-ico--big" data-open="exp" style="left: 718px"><span class="os-ico__halo" aria-hidden="true"></span><span class="os-ico__img" data-svg="exp"></span><em data-i18n="os.exp">Experience</em><small>2024 → 2026</small></button>
+        </div>
+        <p class="os-hand" aria-hidden="true">
+          <svg viewBox="0 0 90 60" class="os-hand__arrow"><path d="M78 54C60 52 34 44 22 12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M12 22l9-12 10 10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-i18n="wel.hand">start here!</span>
+        </p>
+
+        <ul class="os-icons">
+          <li><button class="os-ico" data-open="lofi"><span class="os-ico__img" data-svg="lofi"></span><em>lofi.fm</em></button></li>
+          <li><button class="os-ico" data-open="notes"><span class="os-ico__img" data-svg="notes"></span><em>notes.txt</em></button></li>
+          <li><a class="os-ico" href="https://github.com/Phimabri" target="_blank" rel="noopener"><span class="os-ico__img" data-svg="github"></span><em>GitHub</em></a></li>
+        </ul>
+
+        <section class="os-win os-win--exp" id="win-exp" aria-labelledby="win-exp-t">
+          <header class="os-win__bar">
+            <button class="os-win__close" data-close="exp" aria-label="Close"></button>
+            <span class="os-win__title" id="win-exp-t"><span class="os-win__ico" data-svg="exp"></span><span data-i18n="os.exp">Experience</span></span>
+            <span class="os-win__path">~/malo/experience</span>
+          </header>
+          <div class="os-list" role="list">
+            <div class="os-list__head"><span data-i18n="os.colName">Name</span><span data-i18n="os.colRole">Role</span><span data-i18n="os.colDate">Date</span></div>
+            <button class="os-row" data-app="qrt" role="listitem"><span class="os-row__ico" data-file="qrt"></span><span class="os-row__name"><b>QRT.app</b><small>Qube Research &amp; Technologies</small></span><span class="os-row__role" data-i18n="row.qrt">Quantitative Researcher intern</span><span class="os-row__date" data-i18n="date.qrt">Oct 2025 → Apr 2026</span></button>
+            <button class="os-row" data-app="oxford" role="listitem"><span class="os-row__ico" data-file="oxford"></span><span class="os-row__name"><b>Oxford.dna</b><small>University of Oxford</small></span><span class="os-row__role" data-i18n="row.oxford">Research dissertation</span><span class="os-row__date" data-i18n="date.oxford">Jun → Sep 2025</span></button>
+            <button class="os-row" data-app="crest" role="listitem"><span class="os-row__ico" data-file="crest"></span><span class="os-row__name"><b>CREST.nb</b><small>CNRS · CREST</small></span><span class="os-row__role" data-i18n="row.crest">Research intern</span><span class="os-row__date" data-i18n="date.crest">Jun → Sep 2024</span></button>
+            <button class="os-row" data-app="socgen" role="listitem"><span class="os-row__ico" data-file="socgen"></span><span class="os-row__name"><b>SocGen.chat</b><small>Société Générale</small></span><span class="os-row__role" data-i18n="row.socgen">6-month project · Insurance</span><span class="os-row__date" data-i18n="date.socgen">Jan → Jul 2024</span></button>
+          </div>
+          <footer class="os-win__status" data-i18n="os.status">4 items · click to open</footer>
+        </section>
+
+        <section class="os-win os-win--notes" id="win-notes" aria-label="notes.txt">
+          <header class="os-win__bar">
+            <button class="os-win__close" data-close="notes" aria-label="Close"></button>
+            <span class="os-win__title">notes.txt</span>
+          </header>
+          <div class="os-notes">
+            <p class="os-notes__h" data-i18n="notes.h">Projects</p>
+            <p data-i18n="notes.l1">→ coming soon ✿</p>
+            <p data-i18n="notes.l2">– finish my tea</p>
+            <p data-i18n="notes.l3">– put the next islands online</p>
+          </div>
+        </section>
+
+        <section class="os-lofi" id="lofi">
+          <div class="os-lofi__tape" aria-hidden="true"><i class="reel"></i><i class="reel"></i><span class="os-lofi__window"></span></div>
+          <div class="os-lofi__meta">
+            <small>lofi.fm</small>
+            <b data-i18n="os.track">rain on the window</b>
+            <span data-i18n="os.mix">late night mix · malo</span>
+          </div>
+          <button class="os-lofi__play" id="lofiPlay" aria-pressed="false" data-i18n-aria="os.play"><span class="play"></span></button>
+          <div class="os-lofi__eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </section>
+
+        <section class="os-term" aria-hidden="true">
+          <header><i></i><i></i><i></i><span>tea.sh · zsh</span></header>
+          <pre id="term"></pre>
+        </section>
+
+        <div class="os-toast" id="osToast" role="status"></div>
+      </div>
+      <div class="malos__glass" aria-hidden="true"></div>
+    </div>
+
+    <!-- programs open full screen, like the Education folder -->
+    <div class="app-layer" id="appLayer">
+      <section class="app-panel" id="app-panel-qrt" data-app-panel="qrt" aria-label="QRT.app">
+        <header class="app-panel__bar">
+          <button class="os-win__close" data-app-close aria-label="Close"></button>
+          <span class="os-win__title"><span class="os-win__ico" data-file="qrt"></span>QRT.app</span>
+          <span class="os-win__path">~/malo/experience/QRT.app</span>
+          <button class="app-panel__back" data-app-close><span data-i18n="app.back">← Back to the desktop</span></button>
+        </header>
+        <div class="app-panel__body" id="app-qrt"></div>
+      </section>
+      <section class="app-panel app-panel--lab" id="app-panel-oxford" data-app-panel="oxford" aria-label="Oxford.dna">
+        <header class="app-panel__bar">
+          <button class="os-win__close" data-app-close aria-label="Close"></button>
+          <span class="os-win__title"><span class="os-win__ico" data-file="oxford"></span>Oxford.dna</span>
+          <span class="os-win__path">~/malo/experience/Oxford.dna</span>
+          <button class="app-panel__back" data-app-close><span data-i18n="app.back">← Back to the desktop</span></button>
+        </header>
+        <div class="app-panel__body" id="app-oxford"></div>
+      </section>
+      <section class="app-panel app-panel--nb" id="app-panel-crest" data-app-panel="crest" aria-label="CREST.nb">
+        <header class="app-panel__bar">
+          <button class="os-win__close" data-app-close aria-label="Close"></button>
+          <span class="os-win__title"><span class="os-win__ico" data-file="crest"></span>CREST.nb</span>
+          <span class="os-win__path">~/malo/experience/CREST.nb</span>
+          <button class="app-panel__back" data-app-close><span data-i18n="app.back">← Back to the desktop</span></button>
+        </header>
+        <div class="app-panel__body" id="app-crest"></div>
+      </section>
+      <section class="app-panel app-panel--clay" id="app-panel-socgen" data-app-panel="socgen" aria-label="SocGen.chat">
+        <header class="app-panel__bar">
+          <button class="os-win__close" data-app-close aria-label="Close"></button>
+          <span class="os-win__title"><span class="os-win__ico" data-file="socgen"></span>SocGen.chat</span>
+          <span class="os-win__path">~/malo/experience/SocGen.chat</span>
+          <button class="app-panel__back" data-app-close><span data-i18n="app.back">← Back to the desktop</span></button>
+        </header>
+        <div class="app-panel__body" id="app-socgen"></div>
+      </section>
+    </div>
+
+    <p class="nogl" data-i18n="nogl"></p>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
