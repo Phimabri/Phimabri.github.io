@@ -11,6 +11,7 @@ import { createQRT } from './os/apps/qrt.js';
 import { createOxford } from './os/apps/oxford.js';
 import { createCrest } from './os/apps/crest.js';
 import { createSocgen } from './os/apps/socgen.js';
+import { createShop } from './shop/shop.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -137,7 +138,7 @@ function updateReveals(p) {
   if (fill !== lastFill) { $('#railFill').style.height = fill + '%'; lastFill = fill; }
   let best = 0, bd = 1e9;
   const inDesk = world && world.mode !== 'edu';
-  const navOn = !inDesk ? 'edu' : expWin.classList.contains('is-open') || openApp ? 'desk' : 'home';
+  const navOn = !inDesk ? 'edu' : openApp === 'shop' ? 'shop' : expWin.classList.contains('is-open') || openApp ? 'desk' : 'home';
   navLinks.forEach((a) => a.classList.toggle('is-active', a.dataset.go === navOn));
   railItems.forEach((li, j) => { const d = Math.abs(+li.dataset.stop - p); if (d < bd) { bd = d; best = j; } });
   railItems.forEach((li, j) => {
@@ -328,7 +329,9 @@ const FILES = {
 $$('[data-file]').forEach((el) => (el.innerHTML = FILES[el.dataset.file] || ''));
 
 // windows
-// programs (one per experience); each has its own art direction
+// full-screen screens: one program per experience (each with its own art direction) and the Shop.
+// Every factory takes (root, { t }) and returns { start, stop, refresh }.
+const SCREENS = { qrt: createQRT, oxford: createOxford, crest: createCrest, socgen: createSocgen, shop: createShop };
 const APPS = {};
 let zTop = 10;
 function focusWin(w) { w.style.zIndex = ++zTop; }
@@ -349,10 +352,7 @@ async function launchApp(id, fromEl) {
   if (!panel) return;
   busy = true;
   openApp = id;
-  if (id === 'qrt') APPS.qrt ??= createQRT($('#app-qrt'), { t });
-  if (id === 'oxford') APPS.oxford ??= createOxford($('#app-oxford'), { t });
-  if (id === 'crest') APPS.crest ??= createCrest($('#app-crest'), { t });
-  if (id === 'socgen') APPS.socgen ??= createSocgen($('#app-socgen'), { t });
+  APPS[id] ??= SCREENS[id]($('#app-' + id), { t });
   // FLIP: the panel grows out of the row that was clicked while the camera dives into the screen
   appLayer.classList.add('is-on');
   panel.classList.add('is-open');
@@ -403,7 +403,7 @@ function toast(msg) {
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => osToast.classList.remove('is-on'), 2600);
 }
-const READY = ['qrt', 'oxford', 'crest', 'socgen'];
+const READY = Object.keys(SCREENS);
 $$('.os-row').forEach((row) =>
   row.addEventListener('click', () => {
     $$('.os-row').forEach((r) => r.classList.toggle('is-sel', r === row));
@@ -473,8 +473,9 @@ runTerm();
 $$('.malos [data-open]').forEach((ico) =>
   ico.addEventListener('click', () => {
     const id = ico.dataset.open;
-    if (id === 'edu' || id === 'exp') explored();
+    if (id === 'edu' || id === 'exp' || id === 'shop') explored();
     if (id === 'edu') goEdu(0);
+    else if (id === 'shop') openShop(ico);
     else if (id === 'lofi') { $$('.os-ico').forEach((i) => i.classList.toggle('is-sel', i === ico)); toggleLofi(); }
     else openWin(id);
   })
@@ -516,6 +517,15 @@ async function goEdu(stop = 0) {
   busy = false;
 }
 
+// the Shop opens from anywhere: from the island world we first come back to the desktop
+async function openShop(fromEl) {
+  if (!world || busy || openApp === 'shop') return;
+  explored();
+  if (openApp) await closeApp();
+  if (world.mode !== 'desk') await goDesk(false);
+  launchApp('shop', fromEl || $('.os-ico[data-open="shop"]'));
+}
+
 // ------------------------------------------------------------------ arrival: the site opens on the computer
 const welName = $('#wel-name');
 let introSkip = null;
@@ -548,6 +558,7 @@ $$('[data-go]').forEach((el) =>
   el.addEventListener('click', (e) => {
     e.preventDefault();
     const go = el.dataset.go;
+    if (go === 'shop') { openShop(); return; }
     if (openApp) {
       closeApp().then(() => { if (go === 'edu') goEdu(0); else if (go === 'home') goDesk(false); });
       return;

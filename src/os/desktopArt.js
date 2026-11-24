@@ -6,22 +6,23 @@ export const DESK_W = 1024;
 export const DESK_H = 768;
 export const BAR_H = 30;
 
-// desktop icons. The two chapter folders are big and sit in the middle of the desktop
-// (that is where the visitor should click); the small utilities stay in the right column.
+// desktop icons. The chapter doors (two folders and the Shop's cart) are big and sit in the middle
+// of the desktop (that is where the visitor should click); the small utilities stay in the right column.
 // Each rect = the picture, in desktop pixels (x, y = top-left).
 export const ICON_RECT = {
-  edu: { x: 576, y: 100, w: 124, h: 104 },
-  exp: { x: 736, y: 100, w: 124, h: 104 },
+  edu: { x: 520, y: 100, w: 124, h: 104 },
+  exp: { x: 660, y: 100, w: 124, h: 104 },
+  shop: { x: 800, y: 100, w: 124, h: 104 },
   lofi: { x: 934, y: 58, w: 64, h: 56 },
   notes: { x: 934, y: 160, w: 64, h: 56 },
   github: { x: 934, y: 262, w: 64, h: 56 },
 };
 export const ICONS = Object.keys(ICON_RECT);
-export const BIG_ICONS = ['edu', 'exp'];
+export const BIG_ICONS = ['edu', 'exp', 'shop'];
 export const iconRect = (id) => ICON_RECT[id];
 
 export const WIN = {
-  welcome: { x: 52, y: 78, w: 440, h: 318 },
+  welcome: { x: 52, y: 78, w: 440, h: 372 },
   exp: { x: 44, y: 72, w: 512, h: 392 },
   lofi: { x: 40, y: 560, w: 330, h: 156 },
   term: { x: 400, y: 512, w: 420, h: 206 },
@@ -82,6 +83,30 @@ export const ICON_SVG = {
       <circle cx="87" cy="22" r="1.8" fill="#ffd79a"/>
     </g>`,
     badge(`<rect x="51" y="60" width="18" height="12" rx="2.5" fill="#3d405b"/><path d="M56 60v-2.6a1.6 1.6 0 0 1 1.6-1.6h4.8a1.6 1.6 0 0 1 1.6 1.6V60" stroke="#3d405b" stroke-width="1.8" fill="none"/><rect x="51" y="64.4" width="18" height="1.6" fill="#f2cc8f"/>`)),
+  // the Shop: a little shopping cart, cyan basket, carrying a cup of coffee (the Shop's currency)
+  shop: `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" class="fd">
+  <defs>
+    <linearGradient id="sc-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fd0f0"/><stop offset="1" stop-color="#1f9cc9"/></linearGradient>
+    <linearGradient id="sc-s" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <path d="M6 20h14l5 10" stroke="#2e2a3a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <g class="fd-paper">
+    <path d="M47 33c0-10 4-16 11-16s11 6 11 16z" fill="#fffaf1"/>
+    <path d="M47 33h22" stroke="#d8c7a8" stroke-width="2"/>
+    <path d="M54 14c-2-4 2-6 0-10M62 14c-2-4 2-6 0-10" stroke="#fff" stroke-opacity=".8" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <rect x="73" y="18" width="20" height="16" rx="3" fill="#ffd84d"/>
+    <path d="M78 26h10" stroke="#2e2a3a" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g class="fd-front">
+    <path d="M22 30h90l-9 40a6 6 0 0 1-6 5H36a6 6 0 0 1-6-5z" fill="url(#sc-b)" stroke="#2e2a3a" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M22 30h90l-9 40a6 6 0 0 1-6 5H36a6 6 0 0 1-6-5z" fill="url(#sc-s)"/>
+    <path d="M27 45h80M30 60h74M50 31l3 43M70 31v43M90 31l-3 43" stroke="#2e2a3a" stroke-opacity=".35" stroke-width="2"/>
+    <path d="M36 75l-4 9h68" stroke="#2e2a3a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="42" cy="91" r="6" fill="#2e2a3a"/><circle cx="42" cy="91" r="2.2" fill="#fffaf1"/>
+    <circle cx="90" cy="91" r="6" fill="#2e2a3a"/><circle cx="90" cy="91" r="2.2" fill="#fffaf1"/>
+  </g>
+</svg>`,
   lofi: `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56">
   <rect x="4" y="10" width="56" height="38" rx="6" fill="#efe4cc" stroke="#000" stroke-opacity=".12"/>

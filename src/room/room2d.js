@@ -146,7 +146,7 @@ export function createRoom2D(el) {
       if (on) { lastB = lastF = ''; stillScale = 0; }
     },
     get visible() { return visible; },
-    setNotes(a, b) { noteA.textContent = a; noteB.textContent = b; notes = [a, b]; repaintFront(); },
+    setNotes(a, b) { if (!noteA) return; noteA.textContent = a; noteB.textContent = b; notes = [a, b]; repaintFront(); },
     setPlaying(on) { playing = on; el.classList.toggle('is-playing', on); repaintFront(); },
     onTurntable(f) { tt.addEventListener('click', f); },
   };

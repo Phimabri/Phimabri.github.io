@@ -670,14 +670,7 @@ function computer(g) {
     <circle cx="935" cy="566" r="9" fill="${knob}" ${K2}/><path d="M935 559 v5" ${S(1.4, C.beigeL)}/>
     <circle cx="964" cy="568" r="9.5" fill="#000" opacity=".2"/>
     <circle cx="963" cy="566" r="9" fill="${knob}" ${K2}/><path d="M958.5 561.5 l3 3" ${S(1.4, C.beigeL)}/>
-    <!-- post-its: the big one is translated (Projects / coming soon) -->
-    <g transform="rotate(8 1000 266)">
-      <path d="M970 238 h70 v66 h-70z" fill="#000" opacity=".25" transform="translate(3 4)"/>
-      <path d="M968 234 h70 v62 q-30 2 -70 4z" fill="${g.v('note', '#f2d16a', 0.1, -0.08)}" ${K2}/>
-      <path d="M968 234 h70 v7 h-70z" fill="#000" opacity=".06"/>
-      <text id="room-note-a" x="1003" y="261" text-anchor="middle" font-family="Caveat, cursive" font-weight="600" font-size="19" fill="#3d3220">Projects</text>
-      <text id="room-note-b" x="1003" y="283" text-anchor="middle" font-family="Caveat, cursive" font-size="16" fill="#3d3220">coming ✿</text>
-    </g>
+    <!-- post-its (the "Projects, coming soon" one left once the Shop opened) -->
     <g transform="rotate(-5 676 566)">
       <path d="M648 548 h58 v33 q-30 3 -58 2z" fill="${g.v('note2', '#f6b8a4', 0.1, -0.08)}" ${K2}/>
       <text x="677" y="570" text-anchor="middle" font-family="Caveat, cursive" font-weight="600" font-size="15" fill="#3d3220">surf 7h</text>

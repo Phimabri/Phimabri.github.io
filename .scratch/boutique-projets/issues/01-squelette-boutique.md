@@ -6,13 +6,13 @@ Le ticket commence par un préalable : l'ouverture plein écran des Programmes e
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Préalable : QRT, Oxford, CREST et SocGen s'ouvrent et se ferment exactement comme avant
-- [ ] Le catalogue (logique pure) calcule le prix (≈ 12 ☕ par semaine × un coefficient borné entre 0,8 et 1,2, arrondi), la Rareté (commun < 15, rare de 15 à 40, épique > 40), les groupes par Rayon triés du plus récent au plus ancien, et l'action du bouton (lien ou « Sur demande »)
-- [ ] Le catalogue contient les 5 Projets de la spec (les textes peuvent être provisoires) ; un script de test lance les tests du catalogue avec le lanceur intégré de Node, sans nouvelle dépendance, et ils passent
-- [ ] Le caddie est au centre du Bureau, au même rang que les Dossiers, avec le même guidage tant que rien n'a été ouvert
-- [ ] bienvenue.txt a une ligne Projets ; l'onglet menu « Projets » n'affiche plus « bientôt » et devient actif quand la Boutique est ouverte
-- [ ] La texture 3D de l'écran reprend la nouvelle disposition du Bureau, et le passage de la 3D au HTML reste invisible
-- [ ] Le post-it « Projets, bientôt » est retiré de la Chambre et notes.txt est mis à jour
-- [ ] La Boutique suit le contrat start/stop/refresh, se met à jour au changement de langue et n'anime rien une fois fermée
+- [x] Préalable : QRT, Oxford, CREST et SocGen s'ouvrent et se ferment exactement comme avant
+- [x] Le catalogue (logique pure) calcule le prix (≈ 12 ☕ par semaine × un coefficient borné entre 0,8 et 1,2, arrondi), la Rareté (commun < 15, rare de 15 à 40, épique > 40), les groupes par Rayon triés du plus récent au plus ancien, et l'action du bouton (lien ou « Sur demande »)
+- [x] Le catalogue contient les 5 Projets de la spec (les textes peuvent être provisoires) ; un script de test lance les tests du catalogue avec le lanceur intégré de Node, sans nouvelle dépendance, et ils passent
+- [x] Le caddie est au centre du Bureau, au même rang que les Dossiers, avec le même guidage tant que rien n'a été ouvert
+- [x] bienvenue.txt a une ligne Projets ; l'onglet menu « Projets » n'affiche plus « bientôt » et devient actif quand la Boutique est ouverte
+- [x] La texture 3D de l'écran reprend la nouvelle disposition du Bureau, et le passage de la 3D au HTML reste invisible
+- [x] Le post-it « Projets, bientôt » est retiré de la Chambre et notes.txt est mis à jour
+- [x] La Boutique suit le contrat start/stop/refresh, se met à jour au changement de langue et n'anime rien une fois fermée
