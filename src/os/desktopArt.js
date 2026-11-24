@@ -60,6 +60,36 @@ const badge = (glyph) => `
     <circle cx="60" cy="64" r="13" fill="none" stroke="#000" stroke-opacity=".08"/>
     ${glyph}`;
 
+// The Profile's icon: a little page of Rimbaud in monospace, Malo's Silhouette set in dense
+// characters in the middle, a red dog-ear: what opening it shows (DA.md §18).
+const PROFILE_ICON = (() => {
+  const text = 'CommejedescendaisdesFleuvesimpassiblesJenemesentispluguidéparleshaleursDesPeauxRougescriards';
+  const mask = [ // a bust seen from the side, facing right: short hair, glasses, shoulders
+    '.........',
+    '...@@@...',
+    '..@@@@□..',
+    '..@@@@%..',
+    '...@@%...',
+    '..#####..',
+    '.#######.',
+  ];
+  let k = 0;
+  const rows = mask.map((m, r) => {
+    const spans = [...m].map((c) => {
+      const ch = text[k++ % text.length];
+      return c === '.' ? `<tspan fill="#b3ab9d">${ch}</tspan>` : `<tspan fill="#15131a" font-weight="800">${c}</tspan>`;
+    }).join('');
+    return `<text x="12" y="${11.4 + r * 6.6}" textLength="38" lengthAdjust="spacing">${spans}</text>`;
+  }).join('');
+  return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56">
+  <path d="M10 4h36l8 8v41a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="#000" opacity=".18" transform="translate(1.5 1.5)"/>
+  <path d="M10 3h36l8 8v41a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fill="#f3efe6"/>
+  <path d="M46 3v6a2 2 0 0 0 2 2h6z" fill="#e5372c"/>
+  <g font-family="ui-monospace, Menlo, 'IBM Plex Mono', monospace" font-size="7">${rows}</g>
+</svg>`;
+})();
+
 export const ICON_SVG = {
   // Education: a sheet with a tiny floating island and the balloon
   edu: folder('fe', { b1: '#e2a65e', b2: '#c98a45', f1: '#fbe0a8', f2: '#eab36a' }, `
@@ -108,20 +138,7 @@ export const ICON_SVG = {
     <circle cx="90" cy="91" r="6" fill="#2e2a3a"/><circle cx="90" cy="91" r="2.2" fill="#fffaf1"/>
   </g>
 </svg>`,
-  // the Profile: Malo's ID badge (his side profile with glasses), ringed in the Profile's red
-  profile: `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56">
-  <circle cx="32" cy="28" r="25" fill="#e5372c"/>
-  <circle cx="32" cy="28" r="21.5" fill="#f3efe6"/>
-  <clipPath id="pf-c"><circle cx="32" cy="28" r="21.5"/></clipPath>
-  <g clip-path="url(#pf-c)">
-    <path d="M14 56c2-11 8-16 18-16s16 5 17 16z" fill="#15131a"/>
-    <ellipse cx="33" cy="24" rx="8.6" ry="10" fill="#d9cdb8"/>
-    <path d="M24.2 24.6c-1-8 2.8-12.6 9.4-12.6 4.6 0 8 2 9 5.8-3.8-.7-7.6 0-10.4 1-1.6.6-2.8 2.2-3.3 4.2z" fill="#15131a"/>
-    <rect x="36.4" y="21" width="7.6" height="5.6" rx="1.6" fill="#f3efe6" stroke="#15131a" stroke-width="1.8"/>
-    <path d="M36.4 22.8l-6.6 1" stroke="#15131a" stroke-width="1.6"/>
-  </g>
-</svg>`,
+  profile: PROFILE_ICON,
   lofi: `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56">
   <rect x="4" y="10" width="56" height="38" rx="6" fill="#efe4cc" stroke="#000" stroke-opacity=".12"/>
