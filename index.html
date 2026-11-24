@@ -69,6 +69,9 @@
         <button class="chip glass pixel" id="pixelBtn" aria-pressed="false">
           <span class="pixel-dot" aria-hidden="true"></span><span data-i18n="pixel.label">Pixel</span>
         </button>
+        <button class="avatar glass" id="profileBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="profile" data-i18n-aria="profile.open">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="16" class="avatar__bg"/><path d="M8 30c1-6 4-9 9-9s8 3 8.5 9z" class="avatar__ink"/><ellipse cx="16.5" cy="13" rx="5" ry="5.8" class="avatar__skin"/><path d="M11.2 13.4c-.6-4.6 1.6-7.2 5.4-7.2 2.6 0 4.6 1.2 5.2 3.4-2.2-.4-4.4 0-6 .6-.9.3-1.6 1.2-1.9 2.4z" class="avatar__ink"/><rect x="18.4" y="11.6" width="4.4" height="3.2" rx="1" class="avatar__lens"/><path d="M18.4 12.6l-3.8.6" class="avatar__line"/></svg>
+        </button>
       </div>
     </header>
 
@@ -205,7 +208,7 @@
           </header>
           <div class="os-wel">
             <p class="os-wel__hi" data-i18n="wel.hi">Hello, I’m</p>
-            <h1 class="os-wel__name" id="wel-name">Malo Evain</h1>
+            <h1 class="os-wel__name" id="wel-name"><button class="os-wel__who" data-profile data-i18n-aria="profile.open">Malo Evain</button></h1>
             <p class="os-wel__lede" data-i18n="wel.lede"></p>
             <p class="os-wel__ask" data-i18n="wel.ask">Open a folder to start:</p>
             <div class="os-wel__picks">
@@ -330,6 +333,24 @@
         </header>
         <div class="app-panel__body" id="app-shop"></div>
       </section>
+    </div>
+
+    <!-- the Profile: Malo's session, full screen over everything but the top bar -->
+    <div class="profile" id="profile" role="dialog" aria-modal="true" aria-labelledby="profile-name" hidden>
+      <canvas class="profile__page" aria-hidden="true"></canvas>
+      <button class="profile__close" id="profileClose" data-i18n-aria="profile.close"><span aria-hidden="true">×</span></button>
+      <div class="profile__card" id="profileCard">
+        <p class="profile__kicker" data-i18n="profile.kicker">malOS · session</p>
+        <h2 class="profile__name" id="profile-name">Malo Evain</h2>
+        <p class="profile__lede" data-i18n="profile.lede"></p>
+        <ul class="profile__links">
+          <li class="profile__mail"><a class="profile__link" id="profileMail"></a><button class="profile__copy" id="profileCopy" data-i18n="profile.copy">copy</button><span class="profile__ok" id="profileCopied" role="status"></span></li>
+          <li><a class="profile__link" href="https://www.linkedin.com/in/malo-evain-b1310420a/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a class="profile__link" href="https://github.com/Phimabri" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a class="profile__link" href="cv/Malo-Evain-CV.pdf" target="_blank" rel="noopener"><span data-i18n="profile.cv">CV (PDF, in English)</span> ↗</a></li>
+        </ul>
+      </div>
+      <p class="profile__credit" data-i18n="profile.credit">Arthur Rimbaud, « Le Bateau ivre », 1871</p>
     </div>
 
     <p class="nogl" data-i18n="nogl"></p>

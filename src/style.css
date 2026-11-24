@@ -1722,3 +1722,76 @@ body.mode-desk .grain { display: none; }
   .shop-card__blurb { display: none; }
   .shop__chrome .shop__nav { display: none; }
 }
+
+/* ---------------------------------------------------------------- the Profile: an ASCII page */
+.avatar {
+  width: 40px; height: 40px; padding: 3px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  transition: transform 0.3s var(--ease-spring);
+}
+.avatar:hover { transform: translateY(-2px); }
+.avatar svg { width: 100%; height: 100%; display: block; }
+.avatar__bg { fill: #f3efe6; }
+.avatar__ink { fill: #15131a; }
+.avatar__skin { fill: #d9cdb8; }
+.avatar__lens { fill: #f3efe6; stroke: #15131a; stroke-width: 1.2; }
+.avatar__line { stroke: #15131a; stroke-width: 1.1; fill: none; }
+.avatar[aria-expanded="true"] { box-shadow: 0 0 0 2px #e5372c; }
+@media (max-width: 640px) { .avatar { width: 36px; height: 36px; } }
+
+.os-wel__who { font: inherit; letter-spacing: inherit; color: inherit; padding: 0; cursor: pointer; text-decoration: underline 2px transparent; text-underline-offset: 6px; transition: text-decoration-color 0.25s; }
+.os-wel__who:hover, .os-wel__who:focus-visible { text-decoration-color: #e07a5f; }
+
+.profile {
+  --pf-paper: #f3efe6; --pf-ink: #15131a; --pf-red: #e5372c;
+  position: fixed; inset: 0; z-index: 19;
+  background: var(--pf-paper); color: var(--pf-ink);
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.profile[hidden] { display: none; }
+.profile.is-open { opacity: 1; }
+.profile__page { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* the journey rail hides while the Profile is open */
+body.mode-profile .rail { opacity: 0; pointer-events: none; }
+.profile__close {
+  position: absolute; top: 84px; right: clamp(14px, 2.4vw, 32px);
+  width: 44px; height: 44px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 26px; line-height: 1; color: var(--pf-paper); background: var(--pf-ink);
+  cursor: pointer; transition: background-color 0.2s, transform 0.3s var(--ease-spring);
+}
+.profile__close:hover, .profile__close:focus-visible { background: var(--pf-red); transform: rotate(90deg); }
+.profile__card {
+  position: absolute; left: clamp(16px, 4vw, 64px); bottom: clamp(16px, 6vh, 64px);
+  width: min(420px, calc(100% - 32px));
+  padding: 26px 28px 24px;
+  background: var(--pf-paper);
+  box-shadow: 0 0 0 1px rgba(21, 19, 26, 0.12);
+}
+.profile__kicker { margin: 0 0 8px; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.6; }
+.profile__name { margin: 0 0 10px; font-family: var(--f-body); font-size: clamp(36px, 4vw, 52px); font-weight: 700; line-height: 0.98; letter-spacing: -0.035em; }
+.profile__lede { margin: 0 0 18px; font-size: 14.5px; line-height: 1.5; }
+.profile__links { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.profile__link {
+  color: var(--pf-red); font-family: var(--f-body); font-size: 18px; font-weight: 600; text-decoration: none;
+  background: linear-gradient(currentColor 0 0) 0 100% / 0 2px no-repeat; transition: background-size 0.3s var(--ease-out);
+}
+.profile__link:hover, .profile__link:focus-visible { background-size: 100% 2px; outline: none; }
+.profile__mail { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+.profile__copy {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 3px 8px; border: 1.5px solid var(--pf-red); color: var(--pf-red); cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.profile__copy:hover, .profile__copy:focus-visible { background: var(--pf-red); color: var(--pf-paper); }
+.profile__ok { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; }
+.profile__credit {
+  position: absolute; right: clamp(14px, 2.4vw, 32px); bottom: 14px; margin: 0; padding: 3px 8px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-style: italic;
+  background: var(--pf-paper); opacity: 0.75;
+}
+@media (max-width: 640px) {
+  .profile__close { top: 70px; }
+  .profile__card { left: 12px; right: 12px; bottom: 40px; width: auto; padding: 18px 18px 16px; }
+  .profile__link { font-size: 16.5px; }
+}

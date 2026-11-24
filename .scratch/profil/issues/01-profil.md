@@ -4,20 +4,20 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** done
 
 Données fournies par Malo :
 - CV (PDF anglais) : le fichier `CV.pdf` du dossier « CV etc », parent du portfolio, à copier dans le dossier public du site
 - LinkedIn : https://www.linkedin.com/in/malo-evain-b1310420a/
 - E-mail affiché : malo.evain.eu@gmail.com
 
-- [ ] L'avatar est visible et cliquable dans la barre de menus, dans tous les modes, y compris sur mobile ; « Malo Evain » dans bienvenue.txt ouvre aussi le Profil
-- [ ] Le Profil s'ouvre en moins de 0,5 s, sans plongée de caméra, et se ferme avec Échap, avec le bouton ou par un nouveau clic sur l'avatar
-- [ ] Scène ASCII monochrome sur papier clair, avec « Le Bateau ivre » (répété si nécessaire) et sa mention FR/EN ; le poème reste en français
-- [ ] La Silhouette (jeune adulte, corpulence moyenne, lunettes, cheveux courts juste au-dessus des oreilles, vue de profil) traverse la page en 15 à 20 s avec un cycle de marche ; les lettres s'écartent autour d'elle et s'assombrissent à l'intérieur
-- [ ] Le curseur déforme légèrement le texte ; une marge vide entoure le bloc des coordonnées
-- [ ] Le bloc des coordonnées est en HTML, fixe, au premier plan ; les éléments cliquables sont en rouge vif et soulignés au survol
-- [ ] L'e-mail se copie avec une confirmation ; mailto, LinkedIn, GitHub et le CV (PDF anglais, nouvel onglet) fonctionnent
-- [ ] Le canvas est ignoré par les lecteurs d'écran ; le Profil se navigue au clavier
-- [ ] Mobile : densité réduite et animation fluide ; avec prefers-reduced-motion, une image fixe
-- [ ] L'animation est arrêtée une fois le Profil fermé ; l'Utilitaire GitHub du Bureau est conservé ; une section DA du Profil est ajoutée à `DA.md`
+- [x] L'avatar est visible et cliquable dans la barre de menus, dans tous les modes, y compris sur mobile ; « Malo Evain » dans bienvenue.txt ouvre aussi le Profil
+- [x] Le Profil s'ouvre en moins de 0,5 s, sans plongée de caméra, et se ferme avec Échap, avec le bouton ou par un nouveau clic sur l'avatar
+- [x] Scène ASCII monochrome sur papier clair, avec « Le Bateau ivre » (répété si nécessaire) et sa mention FR/EN ; le poème reste en français
+- [x] La Silhouette (jeune adulte, corpulence moyenne, lunettes, cheveux courts juste au-dessus des oreilles, vue de profil) traverse la page en 15 à 20 s avec un cycle de marche ; les lettres s'écartent autour d'elle et s'assombrissent à l'intérieur
+- [x] Le curseur déforme légèrement le texte ; une marge vide entoure le bloc des coordonnées
+- [x] Le bloc des coordonnées est en HTML, fixe, au premier plan ; les éléments cliquables sont en rouge vif et soulignés au survol
+- [x] L'e-mail se copie avec une confirmation ; mailto, LinkedIn, GitHub et le CV (PDF anglais, nouvel onglet) fonctionnent
+- [x] Le canvas est ignoré par les lecteurs d'écran ; le Profil se navigue au clavier
+- [x] Mobile : densité réduite et animation fluide ; avec prefers-reduced-motion, une image fixe
+- [x] L'animation est arrêtée une fois le Profil fermé ; l'Utilitaire GitHub du Bureau est conservé ; une section DA du Profil est ajoutée à `DA.md`

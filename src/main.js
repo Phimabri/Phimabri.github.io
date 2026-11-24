@@ -12,6 +12,7 @@ import { createOxford } from './os/apps/oxford.js';
 import { createCrest } from './os/apps/crest.js';
 import { createSocgen } from './os/apps/socgen.js';
 import { createShop } from './shop/shop.js';
+import { createProfile } from './profile/profile.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -74,6 +75,9 @@ function applyAll(lang) {
 // ------------------------------------------------------------------ boot
 mountIcons();
 applyAll(getLang());
+// the Profile is reachable from everywhere: the avatar (top bar) and the name in welcome.txt
+const profile = createProfile({ t, reduced });
+$$('[data-profile]').forEach((b) => b.addEventListener('click', (e) => { e.stopPropagation(); profile.open(); }));
 $$('.reveal').forEach((r) => [...r.children].forEach((c, i) => c.style.setProperty('--d', i)));
 
 const sections = $$('main [data-stop]');
@@ -159,6 +163,7 @@ $('#langBtn').addEventListener('click', () => {
   updateTimeUI(true);
   world?.refreshNotes();
   Object.values(APPS).forEach((a) => a.refresh());
+  profile.refresh();
 });
 
 // ------------------------------------------------------------------ world
@@ -265,13 +270,13 @@ window.addEventListener('pointermove', (e) => {
   world?.setPointer((e.clientX / innerWidth) * 2 - 1, -((e.clientY / innerHeight) * 2 - 1));
   tip.style.setProperty('--x', e.clientX + 'px');
   tip.style.setProperty('--y', e.clientY + 'px');
-  pointerOverUI = !!e.target.closest('.card, .topbar, .btn, .time__pop, .rail, .malos, .app-layer');
+  pointerOverUI = !!e.target.closest('.card, .topbar, .btn, .time__pop, .rail, .malos, .app-layer, .profile');
 }, { passive: true });
 let pointerOverUI = false;
 window.addEventListener('pointerleave', () => { pointerX = -1; pointerDirty = true; });
 const ISLAND_TO_STOP = [0, 1, 2, 3];
 window.addEventListener('click', (e) => {
-  if (hovered < 0 || e.target.closest('a, button, .card, .time__pop, input, .malos')) return;
+  if (hovered < 0 || e.target.closest('a, button, .card, .time__pop, input, .malos, .profile')) return;
   goTo(ISLAND_TO_STOP[hovered]);
 });
 
