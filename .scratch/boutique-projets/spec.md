@@ -90,7 +90,7 @@ Un troisième Chapitre, **Projets**, présenté comme une **Boutique** : la bout
   - **Vignette en carte à collectionner** : bandeau avec le prix en ☕, l'Objet sur fond de Rareté, puis le numéro (« #03 · 3/5 »), le titre et une rangée d'icônes de méthodes.
   - **Pas de fenêtres dans la fenêtre** : le style « boîte de dialogue rétro » est réservé à la Fiche et au message « Objet obtenu ! », présenté comme un téléchargement à 100 %.
   - La section DA de la Boutique est ajoutée dans `DA.md` (§17).
-- **Aperçu** : toute Fiche dont le Projet a un site en ligne affiche ce site en direct dans un cadre intégré, chargé seulement à l'ouverture de la Fiche et vidé à sa fermeture. Sur mobile, une capture statique remplace le direct. Au lancement, seul PureOptics a un Aperçu.
+- **Aperçu** : toute Fiche dont le Projet a un site en ligne affiche ce site en direct dans un cadre intégré, chargé seulement à l'ouverture de la Fiche et vidé à sa fermeture. Sur mobile, une capture statique remplace le direct. Au lancement, seul PureOptics a un Aperçu. Le cadre est isolé (bac à sable sans `allow-same-origin`, car le site pourra partager le domaine `phimabri.github.io`) et ne prend pas le focus clavier. Un lien « Ouvrir en grand » ouvre le site dans un nouvel onglet. Sur mobile, un Projet sans capture n'a pas d'Aperçu.
 - **Honnêteté** (comme pour les Programmes) : aucun chiffre inventé. Pour Polymarket, la Fiche présente une étude, sans aucun résultat de performance absent du rapport.
 
 ## Testing Decisions

@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { ITEM_NAMES } from '../src/shop/items.js';
 import { price, rarity, byAisle, action, displayNumbers, PROJECTS, AISLES } from '../src/shop/catalog.js';
 
 test('un Projet coûte environ 12 tasses de café par semaine de travail', () => {
@@ -57,4 +58,8 @@ test('les Projets sont numérotés dans l’ordre où la Boutique les montre', (
     { id: 'ml-new', aisle: 'ml', date: '2025-01' },
   ];
   assert.deepEqual([...displayNumbers(projects)], [['web', 1], ['ml-new', 2], ['ml-old', 3]]);
+});
+
+test('chaque Projet du catalogue a un Objet que la Boutique sait dessiner', () => {
+  for (const p of PROJECTS) assert.ok(ITEM_NAMES.includes(p.item), `${p.id} : Objet « ${p.item} » inconnu`);
 });
