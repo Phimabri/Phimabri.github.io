@@ -9,6 +9,20 @@ import { drawItem, GRID_W, GRID_H, STILL_FRAME } from './items.js';
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const narrow = () => innerWidth < 700;
+// the Shop's currency: a pixel-art cup of coffee (not the emoji), drawn from a tiny grid
+const CUP_ROWS = [
+  '.#..#.....',
+  '..#..#....',
+  '#######...',
+  '#########.',
+  '#######.#.',
+  '#########.',
+  '.#####....',
+  '########..',
+];
+const CUP = `<svg class="cup" viewBox="0 0 10 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="${
+  CUP_ROWS.flatMap((row, y) => [...row].map((c, x) => (c === '#' ? `M${x} ${y}h1v1h-1z` : ''))).join('')}"/></svg>`;
+const withCups = (html) => html.replace(/☕/g, CUP); // for strings that carry the ☕ placeholder
 const BUY_MS = 800; // the "item obtained" box, then the link (within the browser's user-activation window)
 
 export function createShop(root, { t, ask }) {
@@ -20,7 +34,8 @@ export function createShop(root, { t, ask }) {
 
   // shared formatting (card and Fiche)
   const num = (p) => String(numbers.get(p.id)).padStart(2, '0');
-  const cost = (p) => `${price(p)} ☕`;
+  const cost = (p) => `${price(p)}${CUP}`; // HTML
+  const costText = (p) => `${price(p)} ${t('shop.cups')}`; // for accessible names
   const rar = (p) => t('shop.rarity.' + rarity(p));
   const year = (p) => p.date.slice(0, 4);
   const itemCanvas = (p, cls) => `<canvas class="${cls}" width="${GRID_W}" height="${GRID_H}" data-item="${p.item}" aria-hidden="true"></canvas>`;
@@ -30,7 +45,7 @@ export function createShop(root, { t, ask }) {
     return `
       <li>
         <button class="shop-card shop-card--${rarity(p)}" data-project="${p.id}" aria-haspopup="dialog"
-          aria-label="${esc(`${p.title[lang]}, ${cost(p)}, ${rar(p)}`)}">
+          aria-label="${esc(`${p.title[lang]}, ${costText(p)}, ${rar(p)}`)}">
           <span class="shop-card__band"><span class="shop-card__price">${cost(p)}</span><span class="shop-card__rar">${esc(rar(p))}</span></span>
           <span class="shop-card__art">${itemCanvas(p, 'shop-item')}</span>
           <span class="shop-card__meta"><span>#${num(p)} · ${numbers.get(p.id)}/${PROJECTS.length}</span><span>${year(p)}</span></span>
@@ -49,7 +64,7 @@ export function createShop(root, { t, ask }) {
         <div class="shop__chrome">
           <span class="shop__nav" aria-hidden="true"><i>‹</i><i>›</i><i>↻</i></span>
           <span class="shop__url" aria-hidden="true"><b>https://</b>projets.malo.shop</span>
-          <span class="shop__wallet" title="${esc(t('shop.walletTip'))}"><span aria-hidden="true">∞ ☕</span><span class="sr">${esc(t('shop.walletTip'))}</span></span>
+          <span class="shop__wallet" title="${esc(t('shop.walletTip'))}"><span aria-hidden="true">∞${CUP}</span><span class="sr">${esc(t('shop.walletTip'))}</span></span>
         </div>
         <div class="shop__page" data-lenis-prevent>
           <header class="shop__hero">
@@ -65,7 +80,7 @@ export function createShop(root, { t, ask }) {
               <h2 class="shop__aisle-h" id="shop-aisle-${g.aisle}-h">${esc(t('shop.aisle.' + g.aisle))}</h2>
               <ul class="shop__grid" role="list">${g.projects.map((p) => card(p, lang)).join('')}</ul>
             </section>`).join('')}
-          <footer class="shop__foot">${esc(t('shop.foot'))}</footer>
+          <footer class="shop__foot">${withCups(esc(t('shop.foot')))}</footer>
         </div>
         <div class="shop-fiche" hidden>
           <div class="shop-fiche__box" role="dialog" aria-modal="true" aria-labelledby="shop-fiche-title"></div>

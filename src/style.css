@@ -1668,6 +1668,8 @@ body.mode-desk .grain { display: none; }
   position: relative; height: 100%; display: flex; flex-direction: column;
   background: var(--sh-bg); color: var(--sh-ink); font-family: var(--f-body);
 }
+/* the pixel cup of coffee, the Shop's currency: sits on the text baseline, in the text colour */
+.shop .cup { display: inline-block; width: auto; height: 1em; margin-left: 0.3em; vertical-align: -0.12em; }
 .shop .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .shop__chrome {
   flex: none; display: flex; align-items: center; gap: 14px;

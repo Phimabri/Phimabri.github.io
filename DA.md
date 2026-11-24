@@ -366,7 +366,8 @@ L'écran est découpé dans ces deux couches pour que ses couleurs restent brute
   - Rareté : commun `#d9f1fb`, rare `#ffd84d`, épique `#ff6b9a` ;
   - ombres dures de 3 à 10 px ;
   - Silkscreen (pixel) pour le prix, les onglets, les boutons et les étiquettes de méthodes ; Instrument Sans 700 (la graisse la plus forte de cette police) pour les titres ; IBM Plex Mono pour les métadonnées.
-- **Objets** : grille de 32 × 24 pixels agrandie sans lissage, animée à 8 images par seconde (le pas rétro), à l'arrêt avec `prefers-reduced-motion`. Les Objets ont un contour à l'encre pour rester lisibles sur toutes les couleurs de Rareté.
+- **Objets** : grille de 48 × 36 pixels (v1.1 : 1,5 fois plus fine qu'au départ, sur retour « un peu trop pixelisé »), agrandie sans lissage. Les contours sont des disques ou des polygones à bord d'encre d'un pixel, pas des cercles échantillonnés, animée à 8 images par seconde (le pas rétro), à l'arrêt avec `prefers-reduced-motion`. Les Objets ont un contour à l'encre pour rester lisibles sur toutes les couleurs de Rareté.
+- **Tasse de café** : un petit sprite pixel en SVG (10 × 8, `crispEdges`, couleur du texte), jamais l'emoji ☕ (trop « iPhone »). Il apparaît sur les prix, le porte-monnaie, le bouton Acheter et le pied de page.
 - **Fiche** : une boîte de dialogue avec une barre de titre rayée « OBJET #NN » et une croix. En dessous, l'Objet en grand, le texte, les Méthodes en étiquettes et les Résultats en texte courant (jamais en police pixel), puis l'Aperçu, avec un lien « Ouvrir en grand ». En bas, le bouton jaune « Acheter · N ☕ » ou « Sur demande », qui ouvre le Profil.
 - **Achat** : une boîte « TÉLÉCHARGEMENT… », une barre qui se remplit en 10 pas, puis « Objet obtenu ! ». Le lien s'ouvre au bout de 0,8 s, ce qui reste dans la fenêtre où le navigateur autorise encore l'ouverture d'un onglet après le clic.
 - **Onglets de Rayon** : collés en haut de la page pendant le défilement. L'onglet actif est noir.
