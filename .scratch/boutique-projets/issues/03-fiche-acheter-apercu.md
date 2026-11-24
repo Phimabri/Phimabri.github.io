@@ -4,11 +4,11 @@
 
 **Blocked by:** 01 (Squelette de la Boutique) ; Profil 01 (`.scratch/profil/issues/01-profil.md`) pour « Sur demande ». Malo dépose le rapport Polymarket dans le dossier public des Projets.
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] La Fiche se ferme par le bouton, avec Échap ou par un clic à l'extérieur, et la grille garde sa position de défilement
-- [ ] Sur mobile, la Fiche est en plein écran ; elle se navigue au clavier
-- [ ] « Acheter » joue l'animation, puis ouvre le lien ; l'animation est coupée avec prefers-reduced-motion
-- [ ] Liens : dépôts GitHub publics pour time-series-analysis et introduction_to_GAN ; maquettes GitHub Pages pour PureOptics ; rapport PDF servi par le site pour Polymarket ; « Sur demande » pour courtier-mcp, qui ouvre le Profil
-- [ ] L'Aperçu PureOptics est chargé seulement à l'ouverture de la Fiche et vidé à sa fermeture ; sur mobile, une capture statique le remplace
-- [ ] Tous les libellés sont en FR et en EN
+- [x] La Fiche se ferme par le bouton, avec Échap ou par un clic à l'extérieur, et la grille garde sa position de défilement
+- [x] Sur mobile, la Fiche est en plein écran ; elle se navigue au clavier
+- [x] « Acheter » joue l'animation, puis ouvre le lien ; l'animation est coupée avec prefers-reduced-motion
+- [x] Liens : dépôts GitHub publics pour time-series-analysis et introduction_to_GAN ; maquettes GitHub Pages pour PureOptics ; rapport PDF servi par le site pour Polymarket ; « Sur demande » pour courtier-mcp, qui ouvre le Profil
+- [x] L'Aperçu PureOptics est chargé seulement à l'ouverture de la Fiche et vidé à sa fermeture ; sur mobile, une capture statique le remplace
+- [x] Tous les libellés sont en FR et en EN

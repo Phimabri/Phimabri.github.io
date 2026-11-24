@@ -4,12 +4,12 @@
 
 **Blocked by:** 01 (Squelette de la Boutique)
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Palette, typographie (pixel pour les étiquettes et boutons, grotesque grasse pour les titres, monospace pour les métadonnées, jamais de pixel dans un paragraphe) et blocs conformes à DA §17, sans reprendre de marque ni de dessin existant
-- [ ] Les 5 Objets sont en pixel art, lisibles au premier coup d'œil, et chacun a une boucle d'animation
-- [ ] Les animations ne tournent qu'avec la Boutique ouverte et sont coupées avec prefers-reduced-motion
-- [ ] Les onglets de Rayon font sauter à la bonne partie ; le compteur « ∞ ☕ » est visible
-- [ ] Sur mobile : grille de 2 colonnes et onglets de Rayon en bandeau horizontal
-- [ ] Les Vignettes sont atteignables au clavier (Tab)
-- [ ] La palette se distingue de celle du Monde des îles et des quatre Programmes ; DA §17 est complétée (couleurs exactes et polices retenues)
+- [x] Palette, typographie (pixel pour les étiquettes et boutons, grotesque grasse pour les titres, monospace pour les métadonnées, jamais de pixel dans un paragraphe) et blocs conformes à DA §17, sans reprendre de marque ni de dessin existant
+- [x] Les 5 Objets sont en pixel art, lisibles au premier coup d'œil, et chacun a une boucle d'animation
+- [x] Les animations ne tournent qu'avec la Boutique ouverte et sont coupées avec prefers-reduced-motion
+- [x] Les onglets de Rayon font sauter à la bonne partie ; le compteur « ∞ ☕ » est visible
+- [x] Sur mobile : grille de 2 colonnes et onglets de Rayon en bandeau horizontal
+- [x] Les Vignettes sont atteignables au clavier (Tab)
+- [x] La palette se distingue de celle du Monde des îles et des quatre Programmes ; DA §17 est complétée (couleurs exactes et polices retenues)

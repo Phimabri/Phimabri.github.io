@@ -356,7 +356,7 @@ async function launchApp(id, fromEl) {
   if (!panel) return;
   busy = true;
   openApp = id;
-  APPS[id] ??= SCREENS[id]($('#app-' + id), { t });
+  APPS[id] ??= SCREENS[id]($('#app-' + id), { t, ask: () => profile.open() });
   // FLIP: the panel grows out of the row that was clicked while the camera dives into the screen
   appLayer.classList.add('is-on');
   panel.classList.add('is-open');

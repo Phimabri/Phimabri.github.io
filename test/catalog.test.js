@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { price, rarity, byAisle, action, PROJECTS, AISLES } from '../src/shop/catalog.js';
+import { price, rarity, byAisle, action, displayNumbers, PROJECTS, AISLES } from '../src/shop/catalog.js';
 
 test('un Projet coûte environ 12 tasses de café par semaine de travail', () => {
   assert.equal(price({ weeks: 1 }), 12);
@@ -48,4 +48,13 @@ test('garde-fou : chaque Projet du vrai catalogue a ses textes en FR et en EN', 
     }
     assert.ok(AISLES.includes(p.aisle), `${p.id} : Rayon connu`);
   }
+});
+
+test('les Projets sont numérotés dans l’ordre où la Boutique les montre', () => {
+  const projects = [
+    { id: 'ml-old', aisle: 'ml', date: '2023-01' },
+    { id: 'web', aisle: 'web', date: '2024-01' },
+    { id: 'ml-new', aisle: 'ml', date: '2025-01' },
+  ];
+  assert.deepEqual([...displayNumbers(projects)], [['web', 1], ['ml-new', 2], ['ml-old', 3]]);
 });

@@ -61,7 +61,7 @@ Un troisième Chapitre, **Projets**, présenté comme une **Boutique** : la bout
   |---|---|---|---|---|---|---|---|
   | courtier-mcp | Web & agents | éclair dans une prise | « Sur demande », qui ouvre le Profil | 2,5 semaines | 2026 | 30 ☕ | rare |
   | Étude de market making sur Polymarket | Marchés | carnet d'ordres (offres vertes et rouges, et l'écart) | rapport PDF servi par le site (`projects/rapport_latence_polymarket.pdf` dans le dossier public) | 2,5 semaines | 2026 | 30 ☕ | rare |
-  | Site PureOptics | Web & agents | globe façon World Wide Web | maquettes sur GitHub Pages (phimabri.github.io/pureoptics-maquettes), avec Aperçu | 1 semaine | 2026 | 12 ☕ | commun |
+  | Site PureOptics | Web & agents | globe façon World Wide Web | maquettes sur GitHub Pages (phimabri.github.io/pureoptics-maquettes), avec Aperçu (capture `projects/pureoptics-preview.jpg` sur mobile) | 1 semaine | 2026 | 12 ☕ | commun |
   | time-series-analysis | Machine learning | graphique | dépôt GitHub public | 1 semaine | 2024 | 12 ☕ | commun |
   | introduction_to_GAN | Machine learning | réseau de neurones | dépôt GitHub public | 1 semaine | 2023 | 12 ☕ | commun |
 
@@ -79,7 +79,7 @@ Un troisième Chapitre, **Projets**, présenté comme une **Boutique** : la bout
 - **Texture 3D de l'écran** : elle doit reprendre la nouvelle disposition du Bureau (icône de caddie, troisième ligne de bienvenue.txt), pour que le passage de la 3D au HTML reste invisible.
 - **Navigateur malOS** : un cadre de fenêtre avec une barre d'adresse fictive (du genre `projets.malo.shop`), qui contient la Boutique.
 - **Fiche** : un panneau modal par-dessus la grille qui conserve la position de défilement. Il se ferme avec un bouton, Échap ou un clic à l'extérieur. La liste « Résultats » est omise si elle est vide.
-- **Bouton Acheter** : une animation « Objet obtenu ! » de moins d'une seconde, puis l'ouverture du lien dans un nouvel onglet. Sans lien, « Sur demande » ouvre le Profil (voir la spec du Profil).
+- **Bouton Acheter** : une animation « Objet obtenu ! » de 0,8 s, puis l'ouverture du lien dans un nouvel onglet. Au-delà d'environ 1 s, Safari bloquerait l'ouverture. Sans lien, « Sur demande » ouvre le Profil (voir la spec du Profil).
 - **Textes** : tous les textes de la Boutique passent par le système FR/EN existant (règle d'or n° 4). Les textes propres à chaque Projet vivent dans le catalogue, en FR et en EN.
 - **Chambre** : le post-it « Projets, bientôt » est retiré.
 - **DA** (d'après `docs/inspirations/boutique/`) : rétro gaming en 2D, sans thème médiéval ni personnage.

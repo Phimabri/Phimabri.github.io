@@ -24,6 +24,9 @@ export function byAisle(projects) {
   })).filter((g) => g.projects.length);
 }
 
+/** Each Project's number (1…n) in the order the Shop shows them. */
+export const displayNumbers = (projects) => new Map(byAisle(projects).flatMap((g) => g.projects).map((p, i) => [p.id, i + 1]));
+
 /** What the card's button does: buy (open the link) or "on request" (opens the Profile). */
 export const action = (project) => (project.link ? { kind: 'buy', href: project.link } : { kind: 'ask' });
 
@@ -52,12 +55,13 @@ export const PROJECTS = [
     weeks: 1,
     title: { fr: 'Site PureOptics', en: 'PureOptics website' },
     blurb: {
-      fr: 'Des maquettes de page d’accueil pour un opticien, proposées comme pistes de travail.',
-      en: 'Homepage mock-ups for an optician, offered as design directions.',
+      fr: 'Des maquettes de page d’accueil pour un vendeur de modules optiques (transceivers SFP), proposées comme pistes de travail.',
+      en: 'Homepage mock-ups for a seller of optical modules (SFP transceivers), offered as design directions.',
     },
     methods: { fr: ['HTML', 'CSS', 'Design web'], en: ['HTML', 'CSS', 'Web design'] },
     link: 'https://phimabri.github.io/pureoptics-maquettes/',
     preview: 'https://phimabri.github.io/pureoptics-maquettes/',
+    previewImage: 'projects/pureoptics-preview.jpg', // shown instead of the live preview on phones
   },
   {
     id: 'polymarket',
