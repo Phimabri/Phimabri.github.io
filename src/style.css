@@ -670,7 +670,7 @@ body.mode-desk .glass {
 .malos {
   --os-ink: #2a2433;
   --os-soft: rgba(42, 36, 51, 0.62);
-  --os-paper: rgba(255, 248, 238, 0.94);
+  --os-paper: #fff8ee; /* opaque: a window on top of another must not let its text show through */
   --os-line: rgba(42, 36, 51, 0.12);
   --os-accent: #e07a5f;
   position: fixed;
