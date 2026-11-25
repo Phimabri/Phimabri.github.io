@@ -84,7 +84,10 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
   position: fixed;
   inset: 0;
   width: 100vw;
+  /* the dynamic viewport, like innerHeight that the renderer and the malOS overlay use: on a phone
+     100vh also counts the hidden address bar, which stretched the scene and pushed it off centre */
   height: 100vh;
+  height: 100dvh;
   display: block;
   z-index: 0;
 }
@@ -1024,7 +1027,14 @@ body.mode-desk .glass {
 .malos.is-mobile .os-wel { padding: 14px 18px 16px; }
 .malos.is-mobile .os-wel__name { font-size: 38px; }
 .malos.is-mobile .os-wel__lede { font-size: 13px; margin-bottom: 14px !important; }
-.malos.is-mobile .os-folders, .malos.is-mobile .os-hand { display: none; }
+.malos.is-mobile .os-hand { display: none; }
+/* the chapter doors stay on the phone too (the top menu is hidden there): a row under welcome.txt,
+   so closing a window never leaves the desktop without a way into Education, Experience or the Shop */
+.malos.is-mobile .os-folders { left: 0; right: 0; top: 64px; display: flex; justify-content: space-evenly; }
+.malos.is-mobile .os-ico--big { position: static; width: 104px; gap: 6px; }
+.malos.is-mobile .os-ico--big .os-ico__img { width: 84px; height: 70px; }
+.malos.is-mobile .os-ico--big em { font-size: 12px; padding: 1px 8px 2px; }
+.malos.is-mobile .os-ico--big small { font-size: 9.5px; }
 .malos.is-mobile .os-win--exp { left: 12px; right: 12px; top: 46px; width: auto; height: auto; max-height: 62%; }
 .malos.is-mobile .os-list__head { display: none; }
 .malos.is-mobile .os-row { grid-template-columns: 1fr; gap: 2px; }
