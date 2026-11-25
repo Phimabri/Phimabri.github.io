@@ -742,11 +742,13 @@ body.mode-desk .glass {
 .os-ico:hover .os-ico__img { transform: translateY(-3px) scale(1.04); }
 .os-ico.is-sel em { background: #e07a5f; }
 
-/* the two chapter folders: big, in the middle of the desktop */
-.os-folders { position: absolute; left: 0; top: 100px; }
-.os-ico--big { position: absolute; top: 0; width: 140px; gap: 10px; }
+/* the chapter doors: big, in the middle of the desktop. Same grid as the icon column on the
+   right: 132px between centres (the column's centre is the 4th step), and the bottom of the
+   folders lines up with the bottom of the lofi.fm icon (2nd row of the column). */
+.os-folders { position: absolute; left: 0; top: 112px; }
+.os-ico--big { position: absolute; top: 0; width: 128px; gap: 10px; }
 .os-ico--big .os-ico__img { position: relative; width: 124px; height: 104px; filter: drop-shadow(0 12px 14px rgba(10, 6, 25, 0.5)); }
-.os-ico--big em { font-size: 14px; font-weight: 600; padding: 2px 11px 3px; border-radius: 7px; }
+.os-ico--big em { font-size: 14px; font-weight: 600; padding: 2px 11px 3px; border-radius: 7px; white-space: nowrap; }
 .os-ico--big small { margin-top: -5px; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10.5px; color: rgba(255, 248, 238, 0.72); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
 .os-ico--big:hover .os-ico__img { transform: translateY(-4px); }
 /* the folder opens a little: sheets rise, the front flap tilts forward */
@@ -777,7 +779,7 @@ body.mode-desk .glass {
 
 /* hand-written note pointing at the folders */
 .os-hand {
-  position: absolute; left: 654px; top: 262px;
+  position: absolute; left: 640px; top: 274px;
   margin: 0;
   display: flex; align-items: flex-end; gap: 2px;
   font-family: 'Caveat', cursive; font-size: 27px; font-weight: 600; line-height: 1;
@@ -1681,14 +1683,14 @@ body.mode-desk .grain { display: none; }
 .shop__url b { font-weight: 400; opacity: 0.45; }
 .shop__wallet { margin-left: auto; padding: 4px 10px; font-family: var(--f-pixel); font-size: 13px; background: var(--sh-rare); border: 2px solid var(--sh-ink); box-shadow: 3px 3px 0 var(--sh-ink); }
 .shop__page { flex: 1; min-height: 0; overflow: auto; padding: clamp(22px, 4vw, 54px) clamp(16px, 5vw, 72px) 40px; }
-.shop__hero { max-width: 760px; margin-bottom: 26px; }
+.shop__hero { max-width: 760px; margin: 0 auto 26px; text-align: center; }
 .shop__kicker { margin: 0 0 10px; font-family: var(--f-pixel); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
 .shop__title { margin: 0 0 12px; font-size: clamp(32px, 4.4vw, 58px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
-.shop__lede { margin: 0; max-width: 560px; font-size: 15px; line-height: 1.55; }
+.shop__lede { margin: 0 auto; max-width: 560px; font-size: 15px; line-height: 1.55; }
 /* aisle tabs: stick to the top of the page while it scrolls */
 .shop__tabs {
   position: sticky; top: calc(-1 * clamp(22px, 4vw, 54px)); z-index: 2;
-  display: flex; gap: 10px; flex-wrap: wrap;
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
   margin: 0 calc(-1 * clamp(16px, 5vw, 72px)) 26px; padding: 12px clamp(16px, 5vw, 72px);
   background: var(--sh-bg); border-bottom: 3px solid var(--sh-ink);
 }
@@ -1700,9 +1702,11 @@ body.mode-desk .grain { display: none; }
 .shop__tab:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--sh-ink); }
 .shop__tab:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--sh-ink); }
 .shop__tab.is-on { background: var(--sh-ink); color: var(--sh-paper); }
-.shop__aisle { margin-bottom: 40px; scroll-margin-top: 80px; }
+.shop__aisle { margin-bottom: 40px; scroll-margin-top: 80px; text-align: center; }
 .shop__aisle-h { display: inline-block; margin: 0 0 18px; padding: 6px 12px; font-family: var(--f-pixel); font-size: 14px; font-weight: 400; text-transform: uppercase; background: var(--sh-ink); color: var(--sh-paper); }
-.shop__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 26px; }
+/* one aisle per line, its cards centred: fixed-width columns, and auto-fit drops the empty ones, so
+   a small aisle sits in the middle and a big one wraps onto as many lines as it needs */
+.shop__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, 260px); justify-content: center; gap: 26px; }
 /* the Vignette: a collectible card */
 .shop-card {
   width: 100%; height: 100%; display: flex; flex-direction: column; text-align: left; padding: 0;
@@ -1782,7 +1786,7 @@ body.mode-desk .grain { display: none; }
   .shop-card__tags { margin: auto 8px 10px; gap: 4px; }
   .shop-card__tags i { font-size: 9px; padding: 1px 4px; }
   .shop__chrome .shop__nav { display: none; }
-  .shop__tabs { flex-wrap: nowrap; overflow-x: auto; }
+  .shop__tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; }
   .shop__tab { flex: none; }
   .shop-fiche { padding: 0; }
   .shop-fiche__box { width: 100%; height: 100%; box-shadow: none; border-width: 0; }

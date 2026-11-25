@@ -357,6 +357,8 @@ L'écran est découpé dans ces deux couches pour que ses couleurs restent brute
 - **Idée** : la boutique en ligne d'un jeu rétro, ouverte dans un navigateur malOS. Chaque Projet est un Objet à « acheter » en tasses de café. Le prix mesure l'effort, environ 12 ☕ par semaine.
 - **Objets** en pixel art, qui représentent littéralement le sujet : graphique, globe, réseau de neurones, carnet d'ordres, éclair dans une prise. Chacun a une petite boucle animée.
 - **Interface en blocs** : contours noirs épais, ombres dures décalées, coins nets. Crème et noir sur fond **bleu cyan vif**. La couleur d'une carte n'indique que la **Rareté**, qui se déduit du prix.
+- **Sur le Bureau** : l'icône s'appelle « Project Shop » / « Boutique de projets », parce que « Shop » seul ne disait pas ce qu'on y trouve. Les trois grandes icônes suivent la grille de la colonne de droite : 132 px entre les centres, le bas des dossiers au niveau de l'icône lofi.fm.
+- **Page centrée** : un Rayon par ligne, ses cartes (260 px) centrées et qui passent à la ligne quand il y en a beaucoup. Le titre, les onglets et les étiquettes de Rayon sont centrés eux aussi. Un Rayon de un ou deux Projets ne laisse plus la moitié droite de la page vide.
 - **Vignettes en cartes à collectionner** : bandeau avec le prix, l'Objet sur fond de Rareté, puis numéro, titre en grotesque très grasse et icônes des méthodes.
 - **Typographie** : pixel pour les étiquettes et les boutons, grotesque grasse pour les titres, monospace pour les métadonnées. Jamais de pixel dans un paragraphe.
 - **Boîte de dialogue rétro** réservée à la Fiche et à « Objet obtenu ! ». Pas de fenêtres dans la fenêtre.
