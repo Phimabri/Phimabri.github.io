@@ -187,7 +187,8 @@
       </section>
     </main>
 
-    <div class="malos" id="malos" aria-label="malOS">
+    <!-- data-lenis-prevent: Lenis is stopped on the desktop, and a stopped Lenis cancels every wheel and touch scroll; the windows and programs (long on a phone) must scroll natively -->
+    <div class="malos" id="malos" aria-label="malOS" data-lenis-prevent>
       <div class="malos__screen" id="malosScreen">
         <div class="os-bar">
           <span class="os-bar__logo" aria-hidden="true"></span>
@@ -288,7 +289,7 @@
     </div>
 
     <!-- programs open full screen, like the Education folder -->
-    <div class="app-layer" id="appLayer">
+    <div class="app-layer" id="appLayer" data-lenis-prevent>
       <section class="app-panel" id="app-panel-qrt" data-app-panel="qrt" aria-label="QRT.app">
         <header class="app-panel__bar">
           <button class="os-win__close" data-app-close aria-label="Close"></button>

@@ -1016,7 +1016,9 @@ body.mode-desk .glass {
 }
 
 /* phones: full-screen desktop, icons in a row, windows full width */
-.malos.is-mobile { border-radius: 18px; }
+/* a phone is too narrow for the monitor's real screen (~380 x 290 px): malOS takes the whole
+   screen instead, and a solid surround hides the 3D computer, so no bezel shows around it */
+.malos.is-mobile { border-radius: 18px; box-shadow: 0 0 0 100vmax #15122a; }
 .malos.is-mobile .os-bar > span[data-i18n], .malos.is-mobile #osNow { display: none; }
 .malos.is-mobile .os-icons { left: 0; right: 0; top: auto; bottom: 14px; width: auto; display: flex; justify-content: space-evenly; }
 .malos.is-mobile .os-icons li { height: auto; }
@@ -1031,6 +1033,7 @@ body.mode-desk .glass {
 /* the chapter doors stay on the phone too (the top menu is hidden there): a row under welcome.txt,
    so closing a window never leaves the desktop without a way into Education, Experience or the Shop */
 .malos.is-mobile .os-folders { left: 0; right: 0; top: 64px; display: flex; justify-content: space-evenly; }
+.malos.is-mobile .os-win { z-index: 2; } /* windows cover the doors (a focused one gets a higher inline z-index) */
 .malos.is-mobile .os-ico--big { position: static; width: 104px; gap: 6px; }
 .malos.is-mobile .os-ico--big .os-ico__img { width: 84px; height: 70px; }
 .malos.is-mobile .os-ico--big em { font-size: 12px; padding: 1px 8px 2px; }
@@ -1221,7 +1224,9 @@ body.mode-app .rail { opacity: 0; pointer-events: none; }
 @media (max-width: 820px) {
   .app-panel { top: 60px; left: 6px; right: 6px; bottom: 6px; }
   .app-panel__bar .os-win__path { display: none; }
-  .app-panel .qrt__main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: auto; }
+  /* no room for a centred title next to the back button: it follows the close dot */
+  .app-panel__bar .os-win__title { position: static; transform: none; }
+  .app-panel .qrt__main { display: block; overflow: auto; } /* a phone: the parts stack at their natural height and the whole program scrolls */
   .app-panel .qrt__side { border-right: 0; border-bottom: 1px solid rgba(var(--a), 0.14); }
   .app-panel .qrt__mods { flex-direction: row; flex-wrap: wrap; }
   .app-panel .qrt__mods li { flex: 1 1 45%; }
@@ -1362,7 +1367,7 @@ body.mode-app .rail { opacity: 0; pointer-events: none; }
 
 @media (max-width: 820px) {
   .oxd__strip span:not(:first-child) { display: none; }
-  .oxd__main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: auto; }
+  .oxd__main { display: block; overflow: auto; } /* a phone: the parts stack at their natural height and the whole program scrolls */
   .oxd__side { border-right: 0; border-bottom: 1px solid rgba(94, 242, 224, 0.16); }
   .oxd__mods { flex-direction: row; flex-wrap: wrap; }
   .oxd__mods li { flex: 1 1 45%; }
@@ -1449,7 +1454,7 @@ body.mode-app .rail { opacity: 0; pointer-events: none; }
 .mag__slider input { flex: 1; accent-color: #8c1c13; height: 22px; cursor: ew-resize; }
 
 @media (max-width: 820px) {
-  .mag__main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: auto; }
+  .mag__main { display: block; overflow: auto; } /* a phone: the parts stack at their natural height and the whole program scrolls */
   .mag__side { border-right: 0; border-bottom: 1px solid var(--rule); }
   .mag__stand { display: none; }
   .mag__mods { flex-direction: row; flex-wrap: wrap; gap: 0 14px; }
@@ -1561,7 +1566,7 @@ body.mode-app .rail { opacity: 0; pointer-events: none; }
 .sg__chips button.is-on { color: #fff; background: var(--coral); }
 
 @media (max-width: 820px) {
-  .sg__main { grid-template-columns: 1fr; grid-template-rows: auto 1fr; overflow: auto; }
+  .sg__main { display: block; overflow: auto; } /* a phone: the parts stack at their natural height and the whole program scrolls */
   .sg__stand, .sg__note { display: none; }
   .sg__mods { flex-direction: row; flex-wrap: wrap; }
   .sg__mods li { flex: 1 1 45%; }
